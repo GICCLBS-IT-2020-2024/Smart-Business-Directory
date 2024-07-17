@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const AreaSchema = new Schema(
   {
-    label: { type: String, required: true, unique: true },
+    label: { type: String, unique: true },
     count: { type: Number, default: 0 },
   },
   { timestamps: true }

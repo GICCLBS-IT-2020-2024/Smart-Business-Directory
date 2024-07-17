@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { errorHandler } from "@/lib/errorHandler";
 import { createMainInstance } from "@/lib/axios";
-import { addCategory } from "@/store/states/categories";
+import { addCategory as addCategoryAction } from "@/store/states/categories";
 
 export default function useAddCategory() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ export default function useAddCategory() {
     try {
       const res = await userInstance.post("/category", data);
       console.log(res);
-      // dispatch(addCategory(res.data));
+      dispatch(addCategoryAction(res.data));
       return true;
     } catch (error) {
       console.log(error, "useAddCategory");
