@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { openRegister, openRegister2 } from "@/store/states/authStatus";
 
-export default function AIBot() {
+export default function BizGPT() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.userData);
   const openRegisterValue = useSelector((state) => state.authStatus.value);
@@ -22,8 +22,6 @@ export default function AIBot() {
       dispatch(openRegister());
     }
   }, [isLoggedIn]);
-
-  console.log("b");
 
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;

@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AccountSetting from "./pages/AccountSetting";
-import AIBot from "./pages/AIBot";
+import BizGPT from "./pages/BizGPT";
 import About from "./pages/About";
 import Counselling from "./pages/Counselling";
 import MyBusinesses from "./pages/MyBusinesses";
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "ai-bot",
-        element: <AIBot />,
+        element: <BizGPT />,
       },
       {
         path: "counselling",
