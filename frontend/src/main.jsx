@@ -6,6 +6,8 @@ import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AccountSetting from "./pages/AccountSetting";
 import AIBot from "./pages/AIBot";
+import About from "./pages/About";
+import Counselling from "./pages/Counselling";
 import MyBusinesses from "./pages/MyBusinesses";
 import ManageLocation from "./pages/ManageLocation";
 import ManageCategories from "./pages/ManageCategories";
@@ -31,8 +33,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "about",
+        element: <About />,
+      },
+      {
         path: "ai-bot",
         element: <AIBot />,
+      },
+      {
+        path: "counselling",
+        element: <Counselling />,
       },
       {
         path: "profile/",

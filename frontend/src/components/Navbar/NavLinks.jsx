@@ -52,7 +52,23 @@ export default function NavLinks() {
             }`
           }
         >
-          <HomeIcon /> <span>Home</span>
+          <span>Home</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive, isPending }) =>
+            `flex items-center gap-2  + ${
+              isPending
+                ? "text-muted"
+                : isActive
+                ? "text-primary underline underline-offset-4"
+                : ""
+            }`
+          }
+        >
+          <span>About</span>
         </NavLink>
       </li>
       <li className="order-1">
@@ -68,7 +84,7 @@ export default function NavLinks() {
             }`
           }
         >
-          <BotMessageSquare /> <span>Ai Bot</span>
+          <span>Biz GPT</span>
         </NavLink>
       </li>
     </ul>
