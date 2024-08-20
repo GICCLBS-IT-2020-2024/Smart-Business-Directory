@@ -7,7 +7,6 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import AddCategoryForm from "../forms/AddCategoryForm";
-import AddAreaForm from "../forms/AddAreaForm";
 import AddBusinessForm from "../forms/AddBusinessForm";
 
 export default function AddButton({ type }) {
@@ -21,7 +20,6 @@ export default function AddButton({ type }) {
           <DialogTitle>Add new {type}</DialogTitle>
         </DialogHeader>
         {type === "category" && <AddCategoryForm />}
-        {type === "area" && <AddAreaForm />}
         {type === "business" && <AddBusinessForm />}
       </DialogContent>
     </Dialog>

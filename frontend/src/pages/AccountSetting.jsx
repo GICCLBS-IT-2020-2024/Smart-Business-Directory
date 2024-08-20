@@ -2,7 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Mail, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { logOut } from "@/store/states/userData";
+import userData, { logOut } from "@/store/states/userData";
+import LeaveAssistant from "@/components/dialogs/LeaveAssistant";
 import DeleteAccount from "@/components/dialogs/DeleteAccount";
 import EditUsername from "@/components/dialogs/EditUsername";
 import ChangeAvatar from "@/components/dialogs/ChangeAvatar";
@@ -10,6 +11,7 @@ import ChangeAvatar from "@/components/dialogs/ChangeAvatar";
 export default function AccountSetting() {
   const dispatch = useDispatch();
   const { userData: user } = useSelector((state) => state.userData.data);
+  console.log(user);
 
   return (
     <div className="flex flex-grow justify-center items-center ">
@@ -46,11 +48,12 @@ export default function AccountSetting() {
                 console.log("logged out");
               }}
               variant="destructive"
-              size="sm"
+              size={"sm"}
             >
               Log Out
             </Button>
-            <DeleteAccount />
+            {user.role === "assistant" && <LeaveAssistant />}
+            {user.role !== "admin" && <DeleteAccount />}
           </div>
         </div>
       </main>

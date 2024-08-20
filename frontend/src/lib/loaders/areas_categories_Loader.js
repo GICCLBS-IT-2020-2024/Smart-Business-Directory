@@ -5,9 +5,8 @@ const instance = createMainInstance();
 
 export async function areasAndCategoriesLoader() {
   try {
-    const resA = await instance.get("/area");
-    const resC = await instance.get("/category");
-    return { area: resA.data, category: resC.data };
+    const res = await instance.get("/category");
+    return { category: res.data };
   } catch (error) {
     return { error: errorHandler(error) };
   }

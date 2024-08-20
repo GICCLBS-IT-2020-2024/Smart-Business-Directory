@@ -18,6 +18,7 @@ async function verifyEmail(req, res) {
       // error for otp expires
       throw new Error("OTPExpires");
     }
+
     // getting the first document from an array
     userInfo = userInfo[0];
     if (!(await bcrypt.compare(otp, userInfo.otp))) {

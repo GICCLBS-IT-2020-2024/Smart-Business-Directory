@@ -12,7 +12,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { logInFormSchema } from "@/lib/zod/authFormsSchema";
-import { DialogFooter, DialogClose } from "../ui/dialog";
+import { DialogFooter } from "../ui/dialog";
 import useLogIn from "@/hooks/useLogIn";
 import { ButtonLoading } from "../common/ButtonLoading";
 import ErrorMessage from "../common/ErrorMessage";

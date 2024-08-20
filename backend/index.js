@@ -3,10 +3,9 @@ const path = require("path");
 const express = require("express");
 const connectDB = require("./src/database/db");
 const User = require("./src/routes/user");
-const Business = require("./src/routes/business");
+const Blogs = require("./src/routes/blogs");
 const Category = require("./src/routes/category");
-const Area = require("./src/routes/area");
-const BusinessClaim = require("./src/routes/business_claim");
+const SavedBlogs = require("./src/routes/saved_blogs");
 
 const port = process.env.PORT;
 const frontEndOrigin = process.env.FRONTEND_URL;
@@ -31,10 +30,8 @@ app.use(express.json());
 
 app.use("/", User);
 
-app.use("/business", Business);
+app.use("/business", Blogs);
 
 app.use("/category", Category);
 
-app.use("/area", Area);
-
-app.use("/business-claims", BusinessClaim);
+app.use("/business-claims", SavedBlogs);

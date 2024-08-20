@@ -1,8 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAreas } from "@/store/states/areas";
 import { setCategories } from "@/store/states/categories";
 import useVerifyToken from "@/hooks/useVerifyToken";
 import Navbar from "@/components/navbar/Navbar";
@@ -23,7 +22,6 @@ export default function RootLayout() {
       await verifyToken(token);
     })();
     if (!data.errors) {
-      dispatch(setAreas(data.area));
       dispatch(setCategories(data.category));
     } else {
       console.error(data.errors);
@@ -47,6 +45,7 @@ export default function RootLayout() {
       ) : (
         <>
           <Navbar />
+          <ScrollRestoration />
           <Outlet />
           <Footer />
         </>

@@ -27,7 +27,7 @@ export default function AuthButton() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size={"sm"} className="shadow active:scale-50">
+        <Button size={"sm"} className="shadow active:scale-90">
           Register
         </Button>
       </DialogTrigger>

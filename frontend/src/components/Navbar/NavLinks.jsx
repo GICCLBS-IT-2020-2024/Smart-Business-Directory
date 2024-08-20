@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { HomeIcon, BotMessageSquare } from "lucide-react";
 import AuthButton from "../dialogs/AuthButton";
 import Otp from "../dialogs/Otp";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

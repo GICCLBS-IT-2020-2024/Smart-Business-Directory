@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const registerForm = createSlice({
   name: "RegisterForm",
   initialState: {
-    value: {},
+    value: "",
   },
   reducers: {
     addValues: (state, action) => {
       return { ...state, value: action.payload };
     },
     reset: (state) => {
-      return { ...state, value: action.payload };
+      return { ...state, value: "" };
     },
   },
 });

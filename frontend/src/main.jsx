@@ -9,10 +9,9 @@ import BizGPT from "./pages/BizGPT";
 import About from "./pages/About";
 import Counselling from "./pages/Counselling";
 import MyBusinesses from "./pages/MyBusinesses";
-import ManageLocation from "./pages/ManageLocation";
 import ManageCategories from "./pages/ManageCategories";
-import MyClaims from "./pages/MyClaims";
-import ClaimRequests from "./pages/ClaimRequests";
+import MySaved from "./pages/MySaved";
+import ManageAssistants from "./pages/ManageAssistants";
 import ProfileLayout from "./layouts/ProfileLayout";
 import BusinessList from "./pages/BusinessList";
 import Business, { loader as BusinessLoader } from "./pages/Business";
@@ -53,24 +52,20 @@ const router = createBrowserRouter([
             element: <AccountSetting />,
           },
           {
-            path: "my-business",
+            path: "manage-blogs",
             element: <MyBusinesses />,
           },
           {
-            path: "my-claims",
-            element: <MyClaims />,
+            path: "my-saved",
+            element: <MySaved />,
           },
           {
             path: "manage-categories",
             element: <ManageCategories />,
           },
           {
-            path: "manage-location",
-            element: <ManageLocation />,
-          },
-          {
-            path: "claim-requests",
-            element: <ClaimRequests />,
+            path: "manage-assistants",
+            element: <ManageAssistants />,
           },
         ],
       },
@@ -94,8 +89,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
-      <Toaster />
+      <RouterProvider router={router}>
+        <Toaster />
+      </RouterProvider>
     </Provider>
   </React.StrictMode>
 );

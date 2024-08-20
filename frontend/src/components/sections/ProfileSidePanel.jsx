@@ -1,26 +1,22 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  UserCog,
-  BriefcaseBusiness,
-  BaggageClaim,
-  MapPin,
-  Puzzle,
-  Handshake,
-} from "lucide-react";
+import { UserCog, Bookmark, ListTree, Book, Handshake } from "lucide-react";
 import { useSelector } from "react-redux";
 
 const userLinks = [
   { name: "Account Setting", path: "/profile", icon: UserCog },
   {
-    name: "My Businesses",
-    path: "/profile/my-business",
-    icon: BriefcaseBusiness,
+    name: "My Saved",
+    path: "/profile/my-saved",
+    icon: Bookmark,
   },
+];
+
+const assistantLinks = [
   {
-    name: "My Claims",
-    path: "/profile/my-claims",
-    icon: BaggageClaim,
+    name: "Manage Blogs",
+    path: "/profile/manage-blogs",
+    icon: Book,
   },
 ];
 
@@ -28,20 +24,12 @@ const adminLinks = [
   {
     name: "Manage Categories",
     path: "/profile/manage-categories",
-    icon: Puzzle,
-    admin: true,
+    icon: ListTree,
   },
   {
-    name: "Manage Location",
-    path: "/profile/manage-location",
-    icon: MapPin,
-    admin: true,
-  },
-  {
-    name: "Claims Requests",
-    path: "/profile/claim-requests",
+    name: "Manage Assistants",
+    path: "/profile/manage-assistants",
     icon: Handshake,
-    admin: true,
   },
 ];
 
@@ -52,7 +40,11 @@ export default function ProfileSidePanel() {
   let links = userLinks;
 
   if (user && user.role === "admin") {
-    links = userLinks.concat(adminLinks);
+    links = userLinks.concat(assistantLinks).concat(adminLinks);
+  }
+
+  if (user && user.role === "assistant") {
+    links = userLinks.concat(assistantLinks);
   }
 
   return (
@@ -65,10 +57,10 @@ export default function ProfileSidePanel() {
           <Link
             key={index}
             to={link.path}
-            className={`px-2 py-1 rounded flex-grow ${
+            className={`px-2 py-1 rounded flex-grow  transition-colors duration-200 ${
               location.pathname === link.path
                 ? "bg-primary text-primary-foreground"
-                : "bg-accent"
+                : "hover:bg-primary-foreground"
             }`}
           >
             <li className="flex justify-center md:justify-normal gap-2 items-center">

@@ -18,7 +18,7 @@ export default function useRegister() {
     setError("");
     try {
       const res = await userInstance.post("", data);
-      console.log(res);
+      console.log(res.data);
       dispatch(openVerifyEmail());
       return res.data;
     } catch (error) {
