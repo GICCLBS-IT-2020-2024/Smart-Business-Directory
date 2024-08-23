@@ -17,8 +17,8 @@ export default function useChangeAvatar() {
     setError({});
     try {
       const res = await userInstance.patch("/change-avatar", formData);
-      console.log(res, "useChangeAvatar");
       dispatch(updateAvatar(res.data.avatar));
+      return true;
     } catch (error) {
       console.log(error, "useChangeAvatar");
       setError(errorHandler(error));

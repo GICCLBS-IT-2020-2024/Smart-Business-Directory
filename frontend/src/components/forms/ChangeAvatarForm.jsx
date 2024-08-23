@@ -20,7 +20,7 @@ import getFormData from "@/lib/getFormData";
 import useChangeAvatar from "@/hooks/useChangeAvatar";
 import useRemoveAvatar from "@/hooks/useRemoveAvatar";
 
-export default function ChangeAvatarForm() {
+export default function ChangeAvatarForm({ setIsOpen }) {
   const { isLoading, error, changeAvatar } = useChangeAvatar();
   const {
     isLoading: isLoading2,
@@ -41,11 +41,13 @@ export default function ChangeAvatarForm() {
   });
 
   async function onSubmit(values) {
-    await changeAvatar(getFormData(values));
+    const ok = await changeAvatar(getFormData(values));
+    if (ok) setIsOpen(false);
   }
 
   async function onRemove() {
-    await removeAvatar();
+    const ok = await removeAvatar();
+    if (ok) setIsOpen(false);
   }
 
   return (

@@ -17,8 +17,8 @@ export default function useRemoveAvatar() {
     setError({});
     try {
       const res = await userInstance.patch("/remove-avatar");
-      console.log(res, "useChangeAvatar");
       dispatch(updateAvatar("/defaultAvatar.jpeg"));
+      return true;
     } catch (error) {
       console.log(error, "useRemoveAvatar");
       setError(errorHandler(error));

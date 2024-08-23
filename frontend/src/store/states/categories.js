@@ -10,9 +10,16 @@ export const categories = createSlice({
     addCategory: (state, action) => {
       state.push(action.payload);
     },
+    editCategory: (state, action) => {
+      state.map((category) => {
+        if (category.value === action.payload.value) {
+          category.label = action.payload.category;
+        }
+      });
+    },
   },
 });
 
-export const { setCategories, addCategory } = categories.actions;
+export const { setCategories, addCategory, editCategory } = categories.actions;
 
 export default categories.reducer;

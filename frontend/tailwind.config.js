@@ -10,7 +10,7 @@ module.exports = {
   prefix: "",
   theme: {
     fontFamily: {
-      raleway: ["Raleway", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
     },
     fontSize: {
       extraSmallFontSize: "0.64rem",

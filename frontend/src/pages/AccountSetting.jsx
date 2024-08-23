@@ -11,7 +11,6 @@ import ChangeAvatar from "@/components/dialogs/ChangeAvatar";
 export default function AccountSetting() {
   const dispatch = useDispatch();
   const { userData: user } = useSelector((state) => state.userData.data);
-  console.log(user);
 
   return (
     <div className="flex flex-grow justify-center items-center ">
