@@ -5,16 +5,20 @@ import { Provider } from "react-redux";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AccountSetting from "./pages/AccountSetting";
+import CounselNewBusiness from "./pages/CounselNewBusiness";
+import CounselExistBusiness from "./pages/CounselExistBusiness";
 import BizGPT from "./pages/BizGPT";
 import About from "./pages/About";
 import Counselling from "./pages/Counselling";
-import MyBusinesses from "./pages/MyBusinesses";
+import ManageBlogs from "./pages/ManageBlogs";
 import ManageCategories from "./pages/ManageCategories";
 import MySaved from "./pages/MySaved";
 import ManageAssistants from "./pages/ManageAssistants";
 import ProfileLayout from "./layouts/ProfileLayout";
 import BusinessList from "./pages/BusinessList";
-import Business, { loader as BusinessLoader } from "./pages/Business";
+import AddBlogs from "./pages/AddBlogs";
+import BlogByCategory from "./pages/BlogByCategory";
+import Business from "./pages/Business";
 import BusinessEditForm from "./pages/BusinessEditForm";
 import store from "./store/store";
 import { Toaster } from "@/components/ui/toaster";
@@ -39,9 +43,21 @@ const router = createBrowserRouter([
         path: "ai-bot",
         element: <BizGPT />,
       },
+      { path: ":category", element: <BlogByCategory /> },
       {
-        path: "counselling",
-        element: <Counselling />,
+        path: "counselling/",
+
+        children: [
+          { index: true, element: <Counselling /> },
+          {
+            path: "new-business",
+            element: <CounselNewBusiness />,
+          },
+          {
+            path: "exist-business",
+            element: <CounselExistBusiness />,
+          },
+        ],
       },
       {
         path: "profile/",
@@ -53,7 +69,7 @@ const router = createBrowserRouter([
           },
           {
             path: "manage-blogs",
-            element: <MyBusinesses />,
+            element: <ManageBlogs />,
           },
           {
             path: "my-saved",
@@ -70,17 +86,23 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "business-list",
-        element: <BusinessList />,
-      },
-      {
-        path: "edit-business",
-        element: <BusinessEditForm />,
-      },
-      {
-        path: ":businessId",
-        element: <Business />,
-        loader: BusinessLoader,
+        path: "businesses/",
+
+        children: [
+          { index: true, element: <BusinessList /> },
+          {
+            path: "edit-business",
+            element: <BusinessEditForm />,
+          },
+          {
+            path: "add-business",
+            element: <BusinessEditForm />,
+          },
+          {
+            path: ":businessId",
+            element: <Business />,
+          },
+        ],
       },
     ],
   },

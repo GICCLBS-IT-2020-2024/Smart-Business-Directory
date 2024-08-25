@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { ArrowUpDown } from "lucide-react";
 import {
   useReactTable,
@@ -52,10 +51,9 @@ const columns = [
   },
 ];
 
-export default function CategoriesTable() {
+export default function CategoriesTable({ data }) {
   const [columnFilters, setColumnFilters] = useState([]);
   const [sorting, setSorting] = useState([]);
-  const [data] = useSelector((state) => [state.categories]);
   const table = useReactTable({
     data,
     columns,

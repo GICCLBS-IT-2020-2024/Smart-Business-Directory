@@ -6,10 +6,8 @@ import {
   DialogTrigger,
   DialogTitle,
 } from "../ui/dialog";
-import AddCategoryForm from "../forms/AddCategoryForm";
-import AddBusinessForm from "../forms/AddBusinessForm";
 
-export default function AddButton({ type }) {
+export default function AddButton({ heading, children }) {
   return (
     <Dialog>
       <DialogTrigger>
@@ -17,10 +15,9 @@ export default function AddButton({ type }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add new {type}</DialogTitle>
+          <DialogTitle>{heading}</DialogTitle>
         </DialogHeader>
-        {type === "category" && <AddCategoryForm />}
-        {type === "business" && <AddBusinessForm />}
+        {children}
       </DialogContent>
     </Dialog>
   );
