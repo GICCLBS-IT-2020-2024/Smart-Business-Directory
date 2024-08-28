@@ -7,7 +7,7 @@ export default function MyBlogs() {
     <section className="flex-grow p-4">
       <div className="bg-accent text-accent-foreground rounded p-2 flex items-center justify-between">
         <h3 className="h5">123</h3>
-        <Link to="/add-business">
+        <Link to="/businesses/add-business">
           <Button size="icon" variant="ghost" target="blank">
             <SquarePlus strokeWidth={2} size={32} />
           </Button>

@@ -22,14 +22,14 @@ import Business from "./pages/Business";
 import BusinessEditForm from "./pages/BusinessEditForm";
 import store from "./store/store";
 import { Toaster } from "@/components/ui/toaster";
-import { areasAndCategoriesLoader } from "./lib/loaders/areas_categories_Loader";
+import { CategoriesLoader } from "./lib/loaders/categories_Loader";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    loader: areasAndCategoriesLoader,
+    loader: CategoriesLoader,
     children: [
       {
         index: true,
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
           },
           {
             path: "add-business",
-            element: <BusinessEditForm />,
+            element: <AddBlogs />,
           },
           {
             path: ":businessId",

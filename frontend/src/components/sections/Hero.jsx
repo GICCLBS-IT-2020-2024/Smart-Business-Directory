@@ -12,7 +12,7 @@ export default function Hero() {
           <li className="h4">Information simplified for you.</li>
           <li className="h4">Unlock a wealth of business insights.</li>
         </ul>
-        <Link to={"/counselling"} className="block">
+        <Link to={"/counselling/new-business"} className="block">
           <Button className="active:scale-95">Start Counselling</Button>
         </Link>
       </div>
