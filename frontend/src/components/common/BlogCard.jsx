@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AspectRatio } from "../ui/aspect-ratio";
 
 export default function BlogCard({ data }) {
   return (

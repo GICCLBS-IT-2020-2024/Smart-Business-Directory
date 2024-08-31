@@ -25,23 +25,20 @@ import { Button } from "../ui/button";
 const { Control } = components;
 
 export default function AddBizBasicInfo() {
-  const [areaOptions, categoryOptions] = useSelector((state) => [
-    state.areas,
-    state.categories,
-  ]);
+  const [categoryOptions] = useSelector((state) => [state.categories]);
   const { isLoading, error, addBusiness, resetError } = useAddBusiness();
   const form = useForm({
     resolver: zodResolver(addBusinessFormSchema),
     defaultValues: {
       category: "",
-      area: "",
+      title: "",
       description: "",
     },
   });
 
   useEffect(() => {
-    if (!isEmptyObject(error) && error.area) {
-      form.setError("area", { message: error.area });
+    if (!isEmptyObject(error) && error.description) {
+      form.setError("description", { message: error.description });
     }
     if (!isEmptyObject(error) && error.category) {
       form.setError("category", { message: error.category });
@@ -54,9 +51,11 @@ export default function AddBizBasicInfo() {
   async function onSubmit(values) {
     values = {
       ...values,
-      area: values.area.value,
       category: values.category.value,
     };
+
+    console.log(values);
+
     const ok = await addBusiness(values);
     if (ok) {
       form.reset();
@@ -132,6 +131,9 @@ export default function AddBizBasicInfo() {
               <FormControl>
                 <Textarea
                   rows="8"
+                  onPaste={(e) => {
+                    field.value += e.target.value;
+                  }}
                   placeholder="Tell us a little bit about this blog"
                   className="resize-none"
                   {...field}

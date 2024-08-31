@@ -14,7 +14,7 @@ export default function useAddBusiness() {
     setIsLoading(true);
     setError({});
     try {
-      const res = await userInstance.post("/business", data);
+      const res = await userInstance.post("/blogs", data);
       console.log(res.data);
       return true;
     } catch (error) {

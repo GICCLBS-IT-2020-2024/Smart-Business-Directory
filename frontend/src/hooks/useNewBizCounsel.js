@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { errorHandler } from "@/lib/errorHandler";
-import { createAIInstance } from "@/lib/axios";
+import { createMainInstance } from "@/lib/axios";
 
-export default function useCounsellingBusiness() {
+export default function useCounselNewBusiness() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState({});
 
-  const userInstance = createAIInstance(true);
+  const userInstance = createMainInstance();
 
-  async function businessCounselling(data) {
+  async function counselNewBiz(data) {
     setIsLoading(true);
     setError({});
     try {
-      const res = await userInstance.patch("/category", data);
-      console.log(res);
+      const res = await userInstance.post("/counselling", data);
+      console.log(res.data);
       return res.data;
     } catch (error) {
-      console.log(error, "useCounsellingBusiness");
+      console.log(error, "useCounselNewBusiness");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);
@@ -26,5 +26,6 @@ export default function useCounsellingBusiness() {
   function resetError() {
     setError({});
   }
-  return { isLoading, error, businessCounselling, resetError };
+
+  return { isLoading, error, counselNewBiz, resetError };
 }

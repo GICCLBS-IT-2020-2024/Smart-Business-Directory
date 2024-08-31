@@ -12,8 +12,8 @@ const BlogSchema = new Schema(
     title: { type: String, required: true, minlength: 3, maxlength: 75 },
     description: {
       type: String,
-      minlength: 50,
-      maxlength: 500,
+      minlength: 10,
+      maxlength: 200,
     },
     imageUrl: { type: String },
     category: {
@@ -21,11 +21,6 @@ const BlogSchema = new Schema(
       ref: "Category",
       required: true,
     },
-    interests: {},
-    skills: {},
-    MinAge: {},
-    businessTitle: {},
-    MinBudget: {},
     blog: { type: String },
   },
   { timestamps: true }

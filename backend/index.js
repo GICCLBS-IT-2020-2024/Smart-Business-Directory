@@ -6,6 +6,7 @@ const User = require("./src/routes/user");
 const Blogs = require("./src/routes/blogs");
 const Category = require("./src/routes/category");
 const SavedBlogs = require("./src/routes/saved_blogs");
+const Counselling = require("./src/routes/counselling");
 
 const port = process.env.PORT;
 const frontEndOrigin = process.env.FRONTEND_URL;
@@ -30,8 +31,10 @@ app.use(express.json());
 
 app.use("/", User);
 
-app.use("/business", Blogs);
+app.use("/blogs", Blogs);
 
 app.use("/category", Category);
 
-app.use("/business-claims", SavedBlogs);
+app.use("/saved-blogs", SavedBlogs);
+
+app.use("/counselling", Counselling);

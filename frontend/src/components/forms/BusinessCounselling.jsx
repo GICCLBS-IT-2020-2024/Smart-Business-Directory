@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { businessCounsellingSchema } from "@/lib/zod/businessCounselling";
 import isEmptyObject from "@/lib/isEmptyObject";
-import useCounsellingBusiness from "@/hooks/useCounsellingBusiness";
+import useCounselNewBusiness from "@/hooks/useNewBizCounsel";
 import { Button } from "@/components/ui/button";
 import { ButtonLoading } from "../common/ButtonLoading";
 import ErrorMessage from "../common/ErrorMessage";
@@ -16,16 +16,17 @@ import {
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function BusinessCounseling() {
-  const { isLoading, error, businessCounselling, resetError } =
-    useCounsellingBusiness();
+export function BusinessCounseling({ setSuggest }) {
+  const { isLoading, error, counselNewBiz, resetError } =
+    useCounselNewBusiness();
   const form = useForm({
     resolver: zodResolver(businessCounsellingSchema),
   });
 
   async function onSubmit(values) {
     console.log(values);
-    // const res = await businessCounselling(values);
+    const res = await counselNewBiz(values);
+    setSuggest(res);
   }
 
   function reset() {
@@ -34,53 +35,58 @@ export function BusinessCounseling() {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
-        {!isEmptyObject(error) && <ErrorMessage msg={error.msg} />}
-        {data.map((dat, index) => (
-          <FormField
-            control={form.control}
-            name={dat.name}
-            key={index}
-            render={({ field }) => (
-              <FormItem className="space-y-3">
-                <FormLabel>{dat.question}</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex flex-wrap gap-4"
-                  >
-                    {dat.options.map((option, index) => (
-                      <FormItem
-                        key={index}
-                        className="flex items-center space-x-3 space-y-0 flex-grow "
-                      >
-                        <FormControl>
-                          <RadioGroupItem value={option.value} />
-                        </FormControl>
-                        <FormLabel className="font-normal border p-1 py-2 rounded-sm max-w-72 w-full">
-                          {option.label}
-                        </FormLabel>
-                      </FormItem>
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
-        <div className="space-x-4 flex justify-center">
-          <ButtonLoading type="submit" isLoading={isLoading}>
-            Ok
-          </ButtonLoading>
-          <Button type="reset" onClick={reset} variant="outline">
-            Reset
-          </Button>
-        </div>
-      </form>
-    </Form>
+    <div className="flex justify-center">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6 max-w-screen-md"
+        >
+          {!isEmptyObject(error) && <ErrorMessage msg={error.msg} />}
+          {data.map((dat, index) => (
+            <FormField
+              control={form.control}
+              name={dat.name}
+              key={index}
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>{index + 1 + ". " + dat.question}</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="grid grid-cols-2 gap-4"
+                    >
+                      {dat.options.map((option, index) => (
+                        <FormItem
+                          key={index}
+                          className="flex items-center space-x-3 space-y-0 flex-grow "
+                        >
+                          <FormControl>
+                            <RadioGroupItem value={option.value} />
+                          </FormControl>
+                          <FormLabel className="font-normal border p-1 py-2 rounded-sm max-w-72 w-full">
+                            {option.label}
+                          </FormLabel>
+                        </FormItem>
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          ))}
+          <div className="space-x-4 flex justify-center">
+            <ButtonLoading type="submit" isLoading={isLoading}>
+              Submit
+            </ButtonLoading>
+            <Button type="reset" onClick={reset} variant="outline">
+              Reset
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 }
 
