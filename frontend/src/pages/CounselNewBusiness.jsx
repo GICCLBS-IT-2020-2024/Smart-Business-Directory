@@ -4,9 +4,16 @@ import SuggestedBiz from "@/components/sections/SuggestedBiz";
 
 export default function CounselNewBusiness() {
   const [suggest, setSuggest] = useState([]);
+  const [didFind, setDidFind] = useState(false);
 
-  if (typeof suggest !== "undefined" && suggest.length !== 0) {
-    return <SuggestedBiz suggest={suggest} setSuggest={setSuggest} />;
+  if (typeof suggest !== undefined && didFind) {
+    return (
+      <SuggestedBiz
+        suggest={suggest}
+        setSuggest={setSuggest}
+        setDidFind={setDidFind}
+      />
+    );
   }
 
   return (
@@ -14,7 +21,7 @@ export default function CounselNewBusiness() {
       <h3 className="h3 text-center">
         Complete this form to receive tailored business recommendations.
       </h3>
-      <BusinessCounseling setSuggest={setSuggest} />
+      <BusinessCounseling setSuggest={setSuggest} setDidFind={setDidFind} />
     </div>
   );
 }

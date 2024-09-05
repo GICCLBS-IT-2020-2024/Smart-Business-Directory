@@ -24,15 +24,20 @@ import { Button } from "../ui/button";
 
 const { Control } = components;
 
-export default function AddBizBasicInfo() {
+export default function AddBizBasicInfo({ blogData, setBlogData }) {
   const [categoryOptions] = useSelector((state) => [state.categories]);
   const { isLoading, error, addBusiness, resetError } = useAddBusiness();
   const form = useForm({
     resolver: zodResolver(addBusinessFormSchema),
     defaultValues: {
-      category: "",
-      title: "",
-      description: "",
+      title: blogData.title || "",
+      category:
+        categoryOptions && blogData.category
+          ? categoryOptions.find(
+              (category) => category.value === blogData.category
+            ).label
+          : "",
+      description: blogData.description || "",
     },
   });
 
@@ -51,14 +56,19 @@ export default function AddBizBasicInfo() {
   async function onSubmit(values) {
     values = {
       ...values,
+      id: blogData.id || "",
       category: values.category.value,
     };
 
-    console.log(values);
-
-    const ok = await addBusiness(values);
-    if (ok) {
-      form.reset();
+    const res = await addBusiness(values);
+    if (!isEmptyObject(res)) {
+      setBlogData({
+        id: res.id,
+        category: res.category,
+        title: res.title,
+        description: res.description,
+        ...blogData,
+      });
     }
   }
 

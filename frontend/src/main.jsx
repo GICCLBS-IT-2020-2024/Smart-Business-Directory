@@ -108,6 +108,10 @@ const router = createBrowserRouter([
   },
 ]);
 
+if (typeof window !== "undefined" && !window.setImmediate) {
+  window.setImmediate = (fn, ...args) => setTimeout(fn, 0, ...args);
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>

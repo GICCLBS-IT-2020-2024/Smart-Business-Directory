@@ -6,9 +6,19 @@ export const addBusinessFormSchema = z.object({
   description: z
     .string()
     .min(10, {
-      message: "Bio must be at least 10 characters.",
+      message: "Description must be at least 10 characters.",
     })
     .max(200, {
-      message: "Bio must not be longer than 30 characters.",
+      message: "Description must not be longer than 200 characters.",
     }),
+});
+
+export const bizMainImgFormSchema = z.object({
+  id: z.string(),
+  main: z.any(),
+});
+
+export const bizBlogSchema = z.object({
+  id: z.string(),
+  blog: z.string(),
 });

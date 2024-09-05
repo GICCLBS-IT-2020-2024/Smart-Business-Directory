@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function BusinessCounseling({ setSuggest }) {
+export function BusinessCounseling({ setSuggest, setDidFind }) {
   const { isLoading, error, counselNewBiz, resetError } =
     useCounselNewBusiness();
   const form = useForm({
@@ -24,9 +24,9 @@ export function BusinessCounseling({ setSuggest }) {
   });
 
   async function onSubmit(values) {
-    console.log(values);
     const res = await counselNewBiz(values);
     setSuggest(res);
+    setDidFind(true);
   }
 
   function reset() {
