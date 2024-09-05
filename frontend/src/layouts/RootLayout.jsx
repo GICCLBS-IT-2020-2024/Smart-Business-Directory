@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCategories } from "@/store/states/categories";
 import useVerifyToken from "@/hooks/useVerifyToken";
-import Navbar from "@/components/temp/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import { useToast } from "@/components/ui/use-toast";
 import isEmptyObject from "@/lib/isEmptyObject";
