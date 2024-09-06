@@ -8,7 +8,14 @@ const { ObjectId } = mongoose.Types;
 async function addBlogs(req, res) {
   try {
     const blogs = trimInputs(req.body);
-    const { id, ...data } = blogs;
+    const author = req.userData._id;
+    let { id, ...data } = blogs;
+    if (id === "") {
+      data = {
+        ...data,
+        author,
+      };
+    }
     const filter = id !== "" ? { _id: id } : { _id: new ObjectId() };
     const options = {
       upsert: true,
@@ -20,7 +27,7 @@ async function addBlogs(req, res) {
       { $set: data },
       options
     );
-    console.log(newBlogs, filter);
+
     res.send({
       id: newBlogs._id.toString(),
       title: newBlogs.title,

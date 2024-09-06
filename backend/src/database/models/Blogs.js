@@ -13,7 +13,7 @@ const BlogSchema = new Schema(
     description: {
       type: String,
       minlength: 10,
-      maxlength: 200,
+      maxlength: 500,
     },
     imageUrl: { type: String },
     category: {

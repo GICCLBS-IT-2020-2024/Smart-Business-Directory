@@ -8,7 +8,7 @@ export const addBusinessFormSchema = z.object({
     .min(10, {
       message: "Description must be at least 10 characters.",
     })
-    .max(200, {
+    .max(500, {
       message: "Description must not be longer than 200 characters.",
     }),
 });
