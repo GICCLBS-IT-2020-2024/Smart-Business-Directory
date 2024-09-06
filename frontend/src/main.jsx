@@ -22,14 +22,15 @@ import Business from "./pages/Business";
 import BusinessEditForm from "./pages/BusinessEditForm";
 import store from "./store/store";
 import { Toaster } from "@/components/ui/toaster";
-import { CategoriesLoader } from "./lib/loaders/categories_Loader";
+import { categoriesLoader } from "./lib/loaders/categoriesLoader";
+import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    loader: CategoriesLoader,
+    loader: categoriesLoader,
     children: [
       {
         index: true,
@@ -43,7 +44,11 @@ const router = createBrowserRouter([
         path: "ai-bot",
         element: <BizGPT />,
       },
-      { path: ":category", element: <BlogByCategory /> },
+      {
+        path: ":category",
+        element: <BlogByCategory />,
+        loader: blogsByCategoryLoader,
+      },
       {
         path: "counselling/",
 
@@ -96,7 +101,10 @@ const router = createBrowserRouter([
           },
           {
             path: "add-business",
-            element: <AddBlogs />,
+            children: [
+              { index: true, element: <AddBlogs /> },
+              { path: ":businessId", element: <AddBlogs /> },
+            ],
           },
           {
             path: ":businessId",

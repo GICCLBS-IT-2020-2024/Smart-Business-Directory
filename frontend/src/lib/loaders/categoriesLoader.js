@@ -3,7 +3,7 @@ import { errorHandler } from "../errorHandler";
 
 const instance = createMainInstance();
 
-export async function CategoriesLoader() {
+export async function categoriesLoader() {
   try {
     const res = await instance.get("/category");
     return { category: res.data };

@@ -13,7 +13,22 @@ import { Input } from "@/components/ui/input";
 
 const columns = [
   {
-    accessorKey: "label",
+    accessorKey: "title",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="p-0 m-0"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Title
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "category",
     header: ({ column }) => {
       return (
         <Button
@@ -28,7 +43,7 @@ const columns = [
     },
   },
   {
-    accessorKey: "count",
+    accessorKey: "author",
     header: ({ column }) => {
       return (
         <Button
@@ -36,7 +51,7 @@ const columns = [
           className="p-0 m-0"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Blogs Count
+          Author
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -46,12 +61,12 @@ const columns = [
     id: "actions",
     cell: ({ row }) => {
       const data = row.original;
-      return <CategoryActions id={data.value} columns={columns} />;
+      return <CategoryActions id={data.value} />;
     },
   },
 ];
 
-export default function CategoriesTable({ data }) {
+export default function BlogTable({ data }) {
   const [columnFilters, setColumnFilters] = useState([]);
   const [sorting, setSorting] = useState([]);
   const table = useReactTable({
@@ -71,11 +86,11 @@ export default function CategoriesTable({ data }) {
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter categories..."
+          placeholder="Filter blog by title..."
           type="text"
-          value={table.getColumn("label")?.getFilterValue() ?? ""}
+          value={table.getColumn("title")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("label")?.setFilterValue(event.target.value)
+            table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

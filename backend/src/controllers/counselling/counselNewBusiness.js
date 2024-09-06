@@ -17,7 +17,7 @@ async function counselNewBusiness(req, res) {
       ...response.data.top_3_predictions,
     ];
     const blogs = await Blogs.find({ title: { $in: titlesToSearch } }).select(
-      "title description _id"
+      "title description _id imageUrl"
     );
     res.send(blogs);
   } catch (error) {
