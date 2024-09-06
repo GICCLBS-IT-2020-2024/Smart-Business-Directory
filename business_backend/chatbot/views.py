@@ -5,13 +5,54 @@ from django.shortcuts import render, redirect
 import requests
 from requests.exceptions import ConnectionError, Timeout
 import logging
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 logger = logging.getLogger(__name__)
 
+# Initialize the Google Generative AI Chat model
+GEMENI_API_KEY = "AIzaSyAXpz7Nw-TL5sXtNbPHKKFhVB4_HR97C74"
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-pro",
+    api_key=GEMENI_API_KEY,
+    temperature=0,
+    max_tokens=None,
+    timeout=None,
+    max_retries=2,
+    # other params...
+)
 
+def is_farewell(message):
+    farewells = ["goodbye", "bye", "see you", "later", "take care"]
+    return any(farewell in message.lower() for farewell in farewells)
+
+# Generate chatbot response using Google Generative AI
 def generate_response(user_input):
-    # chatbot ka code idhe ana ha
-       return "hello how can i help you"
-
+    # The prompt defines the chatbot's behavior
+    prompt = f"""
+    You are BizzGPT, a business counseling chatbot designed to offer personalized business advice based on the user's name and business type.
+    Instructions:
+    Greeting and Information Gathering:
+    Start by greeting the user.
+    Ask for their name. If the user does not provide their name, respond with: "Please provide your name so I can offer personalized advice," and repeat until they comply.
+    Once the name is provided, ask for the type of business they are involved in. If the user does not provide this information, respond with: "Please provide the type of business you are involved in, so I can tailor my advice to your needs," and repeat until they comply.
+    Providing Advice:
+    Only after receiving both the user's name and business type, ask the user about their specific business problem.
+    Based on the problem and the business type, provide tailored business advice.
+    Also provide information on how to increase business related to the business type.
+    Handling Unrelated Questions:
+    If the user asks a question unrelated to business or business counseling, respond with: "I'm BizzGPT, a business counseling chatbot. I only provide business-related advice. Please ask me about business topics."
+    Objective:
+    Stay focused on offering professional, personalized, and insightful business advice that aligns with the user’s specific business needs.
+    """
+    
+    messages = [
+        ("system", prompt),
+        ("human", user_input),
+    ]
+    
+    # Invoke the chatbot model to generate a response
+    ai_msg = llm.invoke(messages)
+    return ai_msg.content
 
 
 class ChatbotView(APIView):
@@ -28,26 +69,29 @@ class ChatbotView(APIView):
         
         # Token is valid, process the chat request
         user_input = request.data.get('message')
+        
+        # Check if the user wants to end the conversation
+        if is_farewell(user_input):
+            return Response({'response': "BizzGPT: Goodbye! Feel free to return if you have more questions."}, status=status.HTTP_200_OK)
+
+        # Generate response using the chatbot model
         response = generate_response(user_input)
         return Response({'response': response}, status=status.HTTP_200_OK)
 
     
-
-def verify_token(self, token):
-    verification_url = 'https://node-backend-url/verify-token'
-    headers = {'Authorization': token}
-    
-    try:
-        response = requests.get(verification_url, headers=headers, timeout=5)
-        return response.status_code == status.HTTP_200_OK
-    except ConnectionError:
-        logger.error("Connection error during token verification.")
-        return False
-    except Timeout:
-        logger.error("Request timed out during token verification.")
-        return False
-    except requests.RequestException as e:
-        logger.error(f"Token verification failed: {e}")
-        return False
-
-
+    def verify_token(self, token):
+        verification_url = 'https://node-backend-url/verify-token'
+        headers = {'Authorization': token}
+        
+        try:
+            response = requests.get(verification_url, headers=headers, timeout=5)
+            return response.status_code == status.HTTP_200_OK
+        except ConnectionError:
+            logger.error("Connection error during token verification.")
+            return False
+        except Timeout:
+            logger.error("Request timed out during token verification.")
+            return False
+        except requests.RequestException as e:
+            logger.error(f"Token verification failed: {e}")
+            return False
