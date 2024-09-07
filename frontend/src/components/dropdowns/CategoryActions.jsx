@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { MoreHorizontal } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -30,7 +31,11 @@ export default function CategoryActions({ id }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>View blogs</DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link to={`/${id}`} className="w-full h-full">
+            View Blogs
+          </Link>
+        </DropdownMenuItem>
         <EditCategory id={id} />
       </DropdownMenuContent>
     </DropdownMenu>

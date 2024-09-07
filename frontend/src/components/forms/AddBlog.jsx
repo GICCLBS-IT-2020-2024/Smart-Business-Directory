@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { bizBlogSchema } from "@/lib/zod/businessSchema";
@@ -13,21 +14,35 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import TipTap from "../tiptap/TipTap";
+import { removeCachedData } from "../../lib/cachedData";
+import { keyGenerateForBlogToEdit } from "../../lib/loaders/blogsDataToEditLoader";
 
 export default function AddBlog({ blogData, setBlogData }) {
-  const { isLoading, error, addArticle, resetError } = useAddBlogArticle();
+  const { isLoading, error, addArticle } = useAddBlogArticle();
   const form = useForm({
     resolver: zodResolver(bizBlogSchema),
     defaultValues: {
-      id: blogData.id,
-      blog: blogData.blog || "",
+      id: "",
+      blog: "",
     },
   });
 
+  console.log(blogData);
+
+  useEffect(() => {
+    if (blogData) {
+      form.reset({
+        id: blogData.id,
+        blog: blogData.blog || "",
+      });
+    }
+  }, [blogData, form]);
+
   async function onSubmit(values) {
-    console.log(values);
+    removeCachedData(keyGenerateForBlogToEdit(values.id));
     const res = await addArticle(values);
     setBlogData({
+      ...blogData,
       blog: res.blog,
     });
   }

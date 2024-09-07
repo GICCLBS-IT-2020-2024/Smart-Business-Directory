@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table";
 import { flexRender } from "@tanstack/react-table";
 
-export default function DataTable({ table }) {
+export default function DataTable({ table, columns }) {
   return (
     <div className="rounded-md border">
       <Table>

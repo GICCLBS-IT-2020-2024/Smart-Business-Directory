@@ -46,7 +46,7 @@ const columns = [
     id: "actions",
     cell: ({ row }) => {
       const data = row.original;
-      return <CategoryActions id={data.value} />;
+      return <CategoryActions id={data.value} columns={columns} />;
     },
   },
 ];
@@ -80,7 +80,7 @@ export default function CategoriesTable({ data }) {
           className="max-w-sm"
         />
       </div>
-      <DataTable table={table} />
+      <DataTable table={table} columns={columns} />
     </div>
   );
 }

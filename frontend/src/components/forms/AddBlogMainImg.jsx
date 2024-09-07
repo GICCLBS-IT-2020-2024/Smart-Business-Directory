@@ -15,6 +15,8 @@ import { bizMainImgFormSchema } from "@/lib/zod/businessSchema";
 import MyDropZone from "../common/MyDropZone";
 import getFormData from "@/lib/getFormData";
 import useAddBlogImg from "@/hooks/useAddBlogImg";
+import { removeCachedData } from "../../lib/cachedData";
+import { keyGenerateForBlogToEdit } from "../../lib/loaders/blogsDataToEditLoader";
 
 export default function AddBlogMainImg({ blogData, setBlogData }) {
   const { isLoading, error, uploadImg } = useAddBlogImg();
@@ -33,6 +35,7 @@ export default function AddBlogMainImg({ blogData, setBlogData }) {
 
   async function onSubmit(values) {
     const res = await uploadImg(getFormData(values));
+    removeCachedData(keyGenerateForBlogToEdit(values.id));
     setBlogData({ ...blogData, imageUrl: res.imageUrl });
   }
 

@@ -10,7 +10,11 @@ export default function Categories() {
       <h3 className="h3 text-center">Categories</h3>
       <div className="flex gap-4 flex-wrap">
         {categoryOptions.map((category, index) => (
-          <Link key={category.value} to={"/"} className="flex-grow">
+          <Link
+            key={category.value}
+            to={`/${category.value}`}
+            className="flex-grow"
+          >
             <Button
               variant="secondary"
               className="shadow active:scale-90 w-full"

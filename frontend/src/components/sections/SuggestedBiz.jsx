@@ -15,7 +15,7 @@ export default function SuggestedBiz({ suggest, setSuggest, setDidFind }) {
   return (
     <section className="flex flex-col flex-grow my-section gap-8">
       <GoBackButton setSuggest={setSuggest} setDidFind={setDidFind} />
-      <div className="md:flex gap-4 space-y-4 md:space-y-0">
+      <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 sm:grid-cols-2 gap-4">
         {suggest.map((s, index) => (
           <BlogCard key={index} data={s} />
         ))}

@@ -21,6 +21,8 @@ import isEmptyObject from "@/lib/isEmptyObject";
 import ErrorMessage from "../common/ErrorMessage";
 import useAddBusiness from "@/hooks/useAddBusiness";
 import { Button } from "../ui/button";
+import { removeCachedData } from "../../lib/cachedData";
+import { keyGenerateForBlogToEdit } from "../../lib/loaders/blogsDataToEditLoader";
 
 const { Control } = components;
 
@@ -30,16 +32,29 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
   const form = useForm({
     resolver: zodResolver(addBusinessFormSchema),
     defaultValues: {
-      title: blogData.title || "",
-      category:
-        categoryOptions && blogData.category
-          ? categoryOptions.find(
-              (category) => category.value === blogData.category
-            ).label
-          : "",
-      description: blogData.description || "",
+      id: "",
+      title: "", // Ensure this is an empty string
+      category: "", // or null depending on your form field type
+      description: "", // Same for description
     },
   });
+
+  useEffect(() => {
+    if (blogData) {
+      console.log(blogData);
+      form.reset({
+        id: blogData.id || "",
+        title: blogData.title || "",
+        category:
+          categoryOptions && blogData.category
+            ? categoryOptions.find(
+                (category) => category.value === blogData.category
+              )
+            : "",
+        description: blogData.description || "",
+      });
+    }
+  }, [blogData, form]);
 
   useEffect(() => {
     if (!isEmptyObject(error) && error.description) {
@@ -54,6 +69,7 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
   }, [error]);
 
   async function onSubmit(values) {
+    removeCachedData(keyGenerateForBlogToEdit(values.id));
     values = {
       ...values,
       id: blogData.id || "",
@@ -63,11 +79,11 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
     const res = await addBusiness(values);
     if (!isEmptyObject(res)) {
       setBlogData({
+        ...blogData,
         id: res.id,
         category: res.category,
         title: res.title,
         description: res.description,
-        ...blogData,
       });
     }
   }
