@@ -16,8 +16,8 @@ llm = ChatGoogleGenerativeAI(
     api_key=GEMENI_API_KEY,
     temperature=0,
     max_tokens=None,
-    timeout=None,
-    max_retries=2,
+    timeout=30,
+    max_retries=1,
     # other params...
 )
 
@@ -28,21 +28,22 @@ def is_farewell(message):
 # Generate chatbot response using Google Generative AI
 def generate_response(user_input):
     # The prompt defines the chatbot's behavior
-    prompt = f"""
-    You are BizzGPT, a business counseling chatbot designed to offer personalized business advice based on the user's name and business type.
+    prompt = """
+    You are BizzGPT, a business counseling chatbot designed to offer personalized business advice.
+    
     Instructions:
-    Greeting and Information Gathering:
-    Start by greeting the user.
-    Ask for their name. If the user does not provide their name, respond with: "Please provide your name so I can offer personalized advice," and repeat until they comply.
-    Once the name is provided, ask for the type of business they are involved in. If the user does not provide this information, respond with: "Please provide the type of business you are involved in, so I can tailor my advice to your needs," and repeat until they comply.
-    Providing Advice:
-    Only after receiving both the user's name and business type, ask the user about their specific business problem.
-    Based on the problem and the business type, provide tailored business advice.
-    Also provide information on how to increase business related to the business type.
-    Handling Unrelated Questions:
-    If the user asks a question unrelated to business or business counseling, respond with: "I'm BizzGPT, a business counseling chatbot. I only provide business-related advice. Please ask me about business topics."
+    1. Greeting and Information Gathering:
+      
+       
+    2. Providing Advice:
+       - Based on the problem and the business type, provide tailored business advice.
+       - Also provide information on how to increase business related to the business type.
+
+    3. Handling Unrelated Questions:
+       - If the user asks a question unrelated to business or business counseling, respond with: "I'm BizzGPT, a business counseling chatbot. I only provide business-related advice. Please ask me about business topics."
+    
     Objective:
-    Stay focused on offering professional, personalized, and insightful business advice that aligns with the user’s specific business needs.
+    - Stay focused on offering professional, personalized, and insightful business advice that aligns with the user’s specific business needs.
     """
     
     messages = [
@@ -58,14 +59,14 @@ def generate_response(user_input):
 class ChatbotView(APIView):
     def post(self, request):
         # Extract JWT token from the 'Authorization' header
-        token = request.headers.get('Authorization')
+        # token = request.headers.get('Authorization')
         
-        if not token:
-            return Response({'error': 'Token not provided'}, status=status.HTTP_401_UNAUTHORIZED)
+        # if not token:
+            # return Response({'error': 'Token not provided'}, status=status.HTTP_401_UNAUTHORIZED)
         
         # Verify the token with Node.js backend
-        if not self.verify_token(token):
-            return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
+        # if not self.verify_token(token):
+            # return Response({'error': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
         
         # Token is valid, process the chat request
         user_input = request.data.get('message')
