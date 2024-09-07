@@ -1,9 +1,6 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Heading from "@tiptap/extension-heading";
-import OrderedList from "@tiptap/extension-ordered-list";
-import BulletList from "@tiptap/extension-bullet-list";
-import Paragraph from "@tiptap/extension-paragraph";
 import Toolbar from "./Toolbar";
 
 const CustomHeading = Heading.extend({
@@ -32,23 +29,25 @@ const CustomHeading = Heading.extend({
 export default function TipTap({ blog, onChange }) {
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({}),
-      Paragraph.configure({
-        HTMLAttributes: {
-          class: "paragraph",
+      StarterKit.configure({
+        paragraph: {
+          HTMLAttributes: {
+            class: "paragraph",
+          },
+        },
+        heading: false,
+        orderedList: {
+          HTMLAttributes: {
+            class: "list-decimal ml-6",
+          },
+        },
+        bulletList: {
+          HTMLAttributes: {
+            class: "list-disc ml-6",
+          },
         },
       }),
       CustomHeading.configure({}),
-      OrderedList.configure({
-        HTMLAttributes: {
-          class: "list-decimal ml-6",
-        },
-      }),
-      BulletList.configure({
-        HTMLAttributes: {
-          class: "list-disc ml-6",
-        },
-      }),
     ],
     content: blog,
     editorProps: {
@@ -58,7 +57,6 @@ export default function TipTap({ blog, onChange }) {
     },
     onUpdate({}) {
       onChange(editor.getHTML());
-      console.log(editor.getHTML());
     },
   });
   return (

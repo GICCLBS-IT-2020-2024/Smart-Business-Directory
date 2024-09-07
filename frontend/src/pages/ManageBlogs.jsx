@@ -21,7 +21,6 @@ export default function ManageBlogs() {
   if (isLoading) {
     return <Spinner />;
   }
-  console.log(data);
 
   if (!isEmptyObject(error)) {
     return (

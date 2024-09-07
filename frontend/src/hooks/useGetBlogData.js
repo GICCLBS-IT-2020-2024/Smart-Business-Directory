@@ -15,7 +15,7 @@ export default function useGetBlogData() {
     setError({});
     try {
       const res = await userInstance.get("/blogs/blog-data");
-      console.log(res);
+
       return res.data;
     } catch (error) {
       console.log(error, "useGetBlogData");

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const errorHandler = require("../../helpers/errorHandler");
 const trimInputs = require("../../helpers/trimInputs");
 const Blogs = require("../../database/models/Blogs");
+const Category = require("../../database/models/Category");
 
 const { ObjectId } = mongoose.Types;
 
@@ -22,11 +23,32 @@ async function addBlogs(req, res) {
       returnOriginal: false,
       runValidators: true,
     };
+
+    let oldBlog = null;
+    if (id !== "") {
+      oldBlog = await Blogs.findById(id);
+    }
+
+    if (oldBlog === null) {
+      await Category.findByIdAndUpdate(data.category, {
+        $inc: { count: 1 },
+      });
+    } else if (oldBlog.category.toString() !== data.category) {
+      await Category.findByIdAndUpdate(data.category, {
+        $inc: { count: +1 },
+      });
+      await Category.findByIdAndUpdate(oldBlog.category.toString(), {
+        $inc: { count: -1 },
+      });
+    }
+
     const newBlogs = await Blogs.findOneAndUpdate(
       filter,
       { $set: data },
       options
     );
+
+    console.log(newBlogs);
 
     res.send({
       id: newBlogs._id.toString(),

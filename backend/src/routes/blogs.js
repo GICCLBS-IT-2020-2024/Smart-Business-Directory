@@ -7,8 +7,16 @@ const addBlogMainImg = require("../controllers/business/addBlogMainImg");
 const addBlogArticle = require("../controllers/business/addBlogArticle");
 const getBlogData = require("../controllers/business/getBlogData");
 const getBlogsByCategory = require("../controllers/business/getBlogsByCategory");
+const getBlogDataToEdit = require("../controllers/business/getBlogDataToEdit");
 
 router.get("/blog-data/:categoryId", getBlogsByCategory);
+
+router.get(
+  "/blog-edit/:blogId",
+  userGuard,
+  assistantAdminGuard,
+  getBlogDataToEdit
+);
 
 router.post("/", userGuard, assistantAdminGuard, addBlogs);
 

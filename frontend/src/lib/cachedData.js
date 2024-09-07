@@ -1,4 +1,5 @@
 export function getCachedData(key) {
+  return false;
   const cachedData = localStorage.getItem(key);
   if (cachedData) {
     const parsedData = JSON.parse(cachedData);
@@ -19,4 +20,8 @@ export function setCachedData(key, data) {
       timestamp: Date.now(),
     })
   );
+}
+
+export function removeCachedData(key) {
+  localStorage.removeItem(key);
 }

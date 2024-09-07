@@ -6,8 +6,6 @@ async function getBlogData(req, res) {
   try {
     const { _id, role } = req.userData;
 
-    console.log(_id);
-
     const blogs = await Blogs.find()
       .populate("author", "username") // Populate only the username of the author
       .populate("category", "label") // Populate only the label of the category

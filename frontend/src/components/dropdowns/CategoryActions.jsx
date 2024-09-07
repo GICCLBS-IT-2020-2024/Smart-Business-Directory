@@ -32,7 +32,9 @@ export default function CategoryActions({ id }) {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem>
-          <Link to={`/${id}`}>View Blogs</Link>
+          <Link to={`/${id}`} className="w-full h-full">
+            View Blogs
+          </Link>
         </DropdownMenuItem>
         <EditCategory id={id} />
       </DropdownMenuContent>

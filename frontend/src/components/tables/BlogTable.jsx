@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-table";
 import DataTable from "../common/DataTable";
 import CategoryActions from "../dropdowns/CategoryActions";
+import BlogsActions from "../dropdowns/BlogsAction";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -61,7 +62,7 @@ const columns = [
     id: "actions",
     cell: ({ row }) => {
       const data = row.original;
-      return <CategoryActions id={data.value} />;
+      return <BlogsActions id={data._id} />;
     },
   },
 ];

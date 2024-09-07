@@ -24,6 +24,7 @@ import store from "./store/store";
 import { Toaster } from "@/components/ui/toaster";
 import { categoriesLoader } from "./lib/loaders/categoriesLoader";
 import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
+import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -103,7 +104,11 @@ const router = createBrowserRouter([
             path: "add-business",
             children: [
               { index: true, element: <AddBlogs /> },
-              { path: ":businessId", element: <AddBlogs /> },
+              {
+                path: ":blogId",
+                element: <AddBlogs />,
+                loader: blogsDataToEditLoader,
+              },
             ],
           },
           {
