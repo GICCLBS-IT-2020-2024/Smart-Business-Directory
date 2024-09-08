@@ -9,10 +9,13 @@ const getBlogsByCategory = require("../controllers/business/getBlogsByCategory")
 const getBlogDataToEdit = require("../controllers/business/getBlogDataToEdit");
 const removeBlog = require("../controllers/business/removeBlog");
 const getFullBlog = require("../controllers/business/getFullBlog");
+const getLatestBlogs = require("../controllers/business/getLatestBlogs");
 
 const router = express.Router();
 
 router.post("/", userGuard, adminGuard, addBlogs);
+
+router.get("/blog-latest", getLatestBlogs);
 
 router.patch("/blog-image/", userGuard, adminGuard, addBlogMainImg);
 

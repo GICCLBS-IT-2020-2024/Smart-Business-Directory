@@ -19,7 +19,7 @@ function createMainInstance(sendJsonData = true, jwtToken = null) {
 
   return axios.create({
     baseURL: backendAPI,
-    timeout: 5000,
+    timeout: 500000,
     headers: { ...headers },
   });
 }

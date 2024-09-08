@@ -23,6 +23,7 @@ import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
 import { fullBlogDataLoader } from "./lib/loaders/fullBlogDataLoader";
 import "./index.css";
 import ProtectedLayout from "./layouts/ProtectedLayout";
+import { latestBlogsLoader } from "./lib/loaders/latestBlogsLoader";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+        loader: latestBlogsLoader,
       },
       {
         path: "about",
