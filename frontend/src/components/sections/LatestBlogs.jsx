@@ -10,39 +10,6 @@ import {
 import BlogCard from "../common/BlogCard";
 import isEmptyObject from "@/lib/isEmptyObject";
 
-const data = [
-  {
-    imgURL: "/Buildings.jpg",
-    title: "My Business",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio saepe libero porro rem dignissimos fugit voluptas ad, nihil omnis odio sequi quas tenetur dolores commodi perspiciatis explicabo cum quos doloremque minima tempora deleniti ex modi. Perferendis in praesentium veniam! Laboriosam iusto dignissimos quasi nisi quibusdam quis ipsam consequuntur incidunt temporibus!",
-  },
-  {
-    imgURL: "/Buildings.jpg",
-    title: "My Business",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio saepe libero porro rem dignissimos fugit voluptas ad, nihil omnis odio sequi quas tenetur dolores commodi perspiciatis explicabo cum quos doloremque minima tempora deleniti ex modi. Perferendis in praesentium veniam! Laboriosam iusto dignissimos quasi nisi quibusdam quis ipsam consequuntur incidunt temporibus!",
-  },
-  {
-    imgURL: "/Buildings.jpg",
-    title: "My Business",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio saepe libero porro rem dignissimos fugit voluptas ad, nihil omnis odio sequi quas tenetur dolores commodi perspiciatis explicabo cum quos doloremque minima tempora deleniti ex modi. Perferendis in praesentium veniam! Laboriosam iusto dignissimos quasi nisi quibusdam quis ipsam consequuntur incidunt temporibus!",
-  },
-  {
-    imgURL: "/Buildings.jpg",
-    title: "My Business",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio saepe libero porro rem dignissimos fugit voluptas ad, nihil omnis odio sequi quas tenetur dolores commodi perspiciatis explicabo cum quos doloremque minima tempora deleniti ex modi. Perferendis in praesentium veniam! Laboriosam iusto dignissimos quasi nisi quibusdam quis ipsam consequuntur incidunt temporibus!",
-  },
-  {
-    imgURL: "/Buildings.jpg",
-    title: "My Business",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio saepe libero porro rem dignissimos fugit voluptas ad, nihil omnis odio sequi quas tenetur dolores commodi perspiciatis explicabo cum quos doloremque minima tempora deleniti ex modi. Perferendis in praesentium veniam! Laboriosam iusto dignissimos quasi nisi quibusdam quis ipsam consequuntur incidunt temporibus!",
-  },
-];
-
 export default function LatestBlogs() {
   const { blogs, error } = useLoaderData();
 

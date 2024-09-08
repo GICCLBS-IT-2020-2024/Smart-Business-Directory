@@ -32,7 +32,7 @@ export default function BlogsActions({ id }) {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem>
-          <Link to={`/${id}`} className="w-full h-full">
+          <Link to={`/businesses/${id}`} className="w-full h-full">
             View Blog
           </Link>
         </DropdownMenuItem>

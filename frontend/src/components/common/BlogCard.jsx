@@ -12,14 +12,12 @@ export default function BlogCard({ data }) {
   return (
     <Link to={`/businesses/${data._id}`}>
       <Card>
-        <CardContent className="mt-4 ">
-          {/* <AspectRatio ratio={16 / 9}> */}
+        <CardContent className="mt-4">
           <img
             src={data.imageUrl || "/Buildings.jpg"}
             alt="image"
-            className="rounded-md object-cover"
+            className="rounded-md object-cover h-[200px] w-full"
           />
-          {/* </AspectRatio> */}
         </CardContent>
         <CardHeader>
           <CardTitle>{data.title}</CardTitle>
