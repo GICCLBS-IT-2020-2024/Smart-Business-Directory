@@ -18,6 +18,7 @@ async function getBlogDataToEdit(req, res) {
     };
     res.send(formattedBlog);
   } catch (error) {
+    console.log(121232);
     console.log(error, "getBlogDataToEdit");
     const errRes = customErrorHandler(error);
     res.status(errRes.status).json(errRes.errors);
