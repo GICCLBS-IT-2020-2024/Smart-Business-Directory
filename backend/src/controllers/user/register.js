@@ -19,6 +19,7 @@ async function register(req, res) {
       throw new Error("Email_Exists");
     } else {
       const otp = generateOTP();
+
       // saving userData in otp schema
       await new OTP({ username, email, password, otp }).save();
       sendOTP(email, otp);

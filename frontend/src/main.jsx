@@ -26,6 +26,7 @@ import { categoriesLoader } from "./lib/loaders/categoriesLoader";
 import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
 import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
 import "./index.css";
+import ProtectedLayout from "./layouts/ProtectedLayout";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,11 @@ const router = createBrowserRouter([
       },
       {
         path: "profile/",
-        element: <ProfileLayout />,
+        element: (
+          <ProtectedLayout>
+            <ProfileLayout />
+          </ProtectedLayout>
+        ),
         children: [
           {
             index: true,
@@ -97,16 +102,23 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <BusinessList /> },
           {
-            path: "edit-business",
-            element: <BusinessEditForm />,
-          },
-          {
             path: "add-business",
             children: [
-              { index: true, element: <AddBlogs /> },
+              {
+                index: true,
+                element: (
+                  <ProtectedLayout>
+                    <AddBlogs />
+                  </ProtectedLayout>
+                ),
+              },
               {
                 path: ":blogId",
-                element: <AddBlogs />,
+                element: (
+                  <ProtectedLayout>
+                    <AddBlogs />
+                  </ProtectedLayout>
+                ),
                 loader: blogsDataToEditLoader,
               },
             ],

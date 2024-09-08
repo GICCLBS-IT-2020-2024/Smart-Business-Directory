@@ -7,7 +7,7 @@ async function getBlogDataToEdit(req, res) {
     const blog = await Blogs.findById(blogId).select(
       "title imageUrl description _id blog category"
     );
-    // .populate("category", "label");
+
     const formattedBlog = {
       id: blog._id,
       title: blog.title,
