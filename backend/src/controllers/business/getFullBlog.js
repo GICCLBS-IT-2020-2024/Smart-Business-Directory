@@ -7,7 +7,7 @@ async function getFullBlog(req, res) {
     const blog = await Blogs.findById(blogId).select(
       "title imageUrl description _id blog"
     );
-    console.log(blog);
+
     res.send(blog);
   } catch (error) {
     console.log(error, "getBlogsByCategory");

@@ -12,8 +12,6 @@ const getFullBlog = require("../controllers/business/getFullBlog");
 
 router.post("/", userGuard, assistantAdminGuard, addBlogs);
 
-router.get("/:blogId", getFullBlog);
-
 router.patch("/blog-image/", userGuard, assistantAdminGuard, addBlogMainImg);
 
 router.patch("/blog-article/", userGuard, assistantAdminGuard, addBlogArticle);
@@ -28,5 +26,6 @@ router.get(
   assistantAdminGuard,
   getBlogDataToEdit
 );
+router.get("/:blogId", getFullBlog);
 
 module.exports = router;
