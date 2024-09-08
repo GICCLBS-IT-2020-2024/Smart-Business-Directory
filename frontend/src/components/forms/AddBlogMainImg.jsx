@@ -34,8 +34,8 @@ export default function AddBlogMainImg({ blogData, setBlogData }) {
   });
 
   async function onSubmit(values) {
-    const res = await uploadImg(getFormData(values));
     removeCachedData(keyGenerateForBlogToEdit(values.id));
+    const res = await uploadImg(getFormData(values));
     setBlogData({ ...blogData, imageUrl: res.imageUrl });
   }
 

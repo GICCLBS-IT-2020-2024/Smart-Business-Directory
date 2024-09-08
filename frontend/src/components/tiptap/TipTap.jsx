@@ -20,7 +20,7 @@ const CustomHeading = Heading.extend({
       {
         ...HTMLAttributes,
         class: levelClasses[level] || "text-base font-medium",
-      }, // Apply the class
+      },
       0,
     ];
   },

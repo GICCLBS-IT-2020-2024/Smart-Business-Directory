@@ -1,6 +1,8 @@
+import isEmptyObject from "./isEmptyObject";
+
 export function getCachedData(key) {
-  return false;
   const cachedData = localStorage.getItem(key);
+
   if (cachedData) {
     const parsedData = JSON.parse(cachedData);
     if (Date.now() - parsedData.timestamp < 5 * 60 * 1000) {
@@ -13,6 +15,9 @@ export function getCachedData(key) {
 }
 
 export function setCachedData(key, data) {
+  if (data?.length === 0 || isEmptyObject(data)) {
+    return;
+  }
   localStorage.setItem(
     key,
     JSON.stringify({

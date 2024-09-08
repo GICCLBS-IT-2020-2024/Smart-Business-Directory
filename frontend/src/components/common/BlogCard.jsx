@@ -9,7 +9,7 @@ import {
 
 export default function BlogCard({ data }) {
   return (
-    <Link>
+    <Link to={`/businesses/${data._id}`}>
       <Card>
         <CardContent className="mt-4">
           <img

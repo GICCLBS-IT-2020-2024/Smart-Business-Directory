@@ -25,6 +25,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { categoriesLoader } from "./lib/loaders/categoriesLoader";
 import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
 import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
+import { fullBlogDataLoader } from "./lib/loaders/fullBlogDataLoader";
 import "./index.css";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 
@@ -98,9 +99,13 @@ const router = createBrowserRouter([
       },
       {
         path: "businesses/",
-
         children: [
           { index: true, element: <BusinessList /> },
+          {
+            path: ":blogId",
+            element: <Business />,
+            loader: fullBlogDataLoader,
+          },
           {
             path: "add-business",
             children: [
@@ -122,10 +127,6 @@ const router = createBrowserRouter([
                 loader: blogsDataToEditLoader,
               },
             ],
-          },
-          {
-            path: ":businessId",
-            element: <Business />,
           },
         ],
       },

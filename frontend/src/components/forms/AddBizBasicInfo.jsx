@@ -41,7 +41,6 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
 
   useEffect(() => {
     if (blogData) {
-      console.log(blogData);
       form.reset({
         id: blogData.id || "",
         title: blogData.title || "",
@@ -69,12 +68,12 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
   }, [error]);
 
   async function onSubmit(values) {
-    removeCachedData(keyGenerateForBlogToEdit(values.id));
     values = {
       ...values,
       id: blogData.id || "",
       category: values.category.value,
     };
+    removeCachedData(keyGenerateForBlogToEdit(values.id));
 
     const res = await addBusiness(values);
     if (!isEmptyObject(res)) {

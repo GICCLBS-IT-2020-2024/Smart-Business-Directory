@@ -1,6 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import BlogInfo from "@/components/sections/BlogInfo";
 
 export default function Business() {
-  const { businessId } = useParams();
-  return <div className="flex-grow">Business {businessId}</div>;
+  const { blog } = useLoaderData();
+  console.log(blog);
+  return (
+    <div className="flex-grow my-section space-y-8">
+      <BlogInfo data={blog} />
+      <section>
+        <div dangerouslySetInnerHTML={{ __html: blog.blog }} />
+      </section>
+    </div>
+  );
 }

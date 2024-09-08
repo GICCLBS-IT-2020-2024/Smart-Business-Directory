@@ -8,6 +8,17 @@ const addBlogArticle = require("../controllers/business/addBlogArticle");
 const getBlogData = require("../controllers/business/getBlogData");
 const getBlogsByCategory = require("../controllers/business/getBlogsByCategory");
 const getBlogDataToEdit = require("../controllers/business/getBlogDataToEdit");
+const getFullBlog = require("../controllers/business/getFullBlog");
+
+router.post("/", userGuard, assistantAdminGuard, addBlogs);
+
+router.get("/:blogId", getFullBlog);
+
+router.patch("/blog-image/", userGuard, assistantAdminGuard, addBlogMainImg);
+
+router.patch("/blog-article/", userGuard, assistantAdminGuard, addBlogArticle);
+
+router.get("/blog-data/", userGuard, assistantAdminGuard, getBlogData);
 
 router.get("/blog-data/:categoryId", getBlogsByCategory);
 
@@ -17,13 +28,5 @@ router.get(
   assistantAdminGuard,
   getBlogDataToEdit
 );
-
-router.post("/", userGuard, assistantAdminGuard, addBlogs);
-
-router.patch("/blog-image/", userGuard, assistantAdminGuard, addBlogMainImg);
-
-router.patch("/blog-article/", userGuard, assistantAdminGuard, addBlogArticle);
-
-router.get("/blog-data/", userGuard, assistantAdminGuard, getBlogData);
 
 module.exports = router;
