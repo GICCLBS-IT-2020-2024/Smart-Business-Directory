@@ -2,8 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Mail, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import userData, { logOut } from "@/store/states/userData";
-import LeaveAssistant from "@/components/dialogs/LeaveAssistant";
+import { logOut } from "@/store/states/userData";
 import DeleteAccount from "@/components/dialogs/DeleteAccount";
 import EditUsername from "@/components/dialogs/EditUsername";
 import ChangeAvatar from "@/components/dialogs/ChangeAvatar";
@@ -51,7 +50,6 @@ export default function AccountSetting() {
             >
               Log Out
             </Button>
-            {user.role === "assistant" && <LeaveAssistant />}
             {user.role !== "admin" && <DeleteAccount />}
           </div>
         </div>
