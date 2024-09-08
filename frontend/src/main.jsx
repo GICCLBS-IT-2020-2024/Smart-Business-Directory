@@ -5,21 +5,16 @@ import { Provider } from "react-redux";
 import RootLayout from "./layouts/RootLayout";
 import Home from "./pages/Home";
 import AccountSetting from "./pages/AccountSetting";
-import CounselNewBusiness from "./pages/CounselNewBusiness";
-import CounselExistBusiness from "./pages/CounselExistBusiness";
 import BizGPT from "./pages/BizGPT";
 import About from "./pages/About";
 import Counselling from "./pages/Counselling";
 import ManageBlogs from "./pages/ManageBlogs";
 import ManageCategories from "./pages/ManageCategories";
-import MySaved from "./pages/MySaved";
-import ManageAssistants from "./pages/ManageAssistants";
 import ProfileLayout from "./layouts/ProfileLayout";
 import BusinessList from "./pages/BusinessList";
 import AddBlogs from "./pages/AddBlogs";
 import BlogByCategory from "./pages/BlogByCategory";
 import Business from "./pages/Business";
-import BusinessEditForm from "./pages/BusinessEditForm";
 import store from "./store/store";
 import { Toaster } from "@/components/ui/toaster";
 import { categoriesLoader } from "./lib/loaders/categoriesLoader";
@@ -54,18 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "counselling/",
-
-        children: [
-          { index: true, element: <Counselling /> },
-          {
-            path: "new-business",
-            element: <CounselNewBusiness />,
-          },
-          {
-            path: "exist-business",
-            element: <CounselExistBusiness />,
-          },
-        ],
+        element: <Counselling />,
       },
       {
         path: "profile/",
@@ -84,16 +68,8 @@ const router = createBrowserRouter([
             element: <ManageBlogs />,
           },
           {
-            path: "my-saved",
-            element: <MySaved />,
-          },
-          {
             path: "manage-categories",
             element: <ManageCategories />,
-          },
-          {
-            path: "manage-assistants",
-            element: <ManageAssistants />,
           },
         ],
       },

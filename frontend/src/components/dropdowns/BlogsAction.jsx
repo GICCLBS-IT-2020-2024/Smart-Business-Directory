@@ -9,6 +9,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import RemoveBlog from "../dialogs/RemoveBlog";
 
 export default function BlogsActions({ id }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,7 @@ export default function BlogsActions({ id }) {
             Edit
           </Link>
         </DropdownMenuItem>
+        <RemoveBlog id={id} />
       </DropdownMenuContent>
     </DropdownMenu>
   );

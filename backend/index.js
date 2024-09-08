@@ -5,7 +5,6 @@ const connectDB = require("./src/database/db");
 const User = require("./src/routes/user");
 const Blogs = require("./src/routes/blogs");
 const Category = require("./src/routes/category");
-const SavedBlogs = require("./src/routes/saved_blogs");
 const Counselling = require("./src/routes/counselling");
 
 const port = process.env.PORT;
@@ -34,7 +33,5 @@ app.use("/", User);
 app.use("/blogs", Blogs);
 
 app.use("/category", Category);
-
-app.use("/saved-blogs", SavedBlogs);
 
 app.use("/counselling", Counselling);

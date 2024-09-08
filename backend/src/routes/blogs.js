@@ -1,31 +1,31 @@
 const addBlogs = require("../controllers/business/addBlogs");
 const express = require("express");
-const router = express.Router();
-const assistantAdminGuard = require("../middlewares/assistantAdminGuard");
+const adminGuard = require("../middlewares/adminGuard");
 const userGuard = require("../middlewares/userGuard");
 const addBlogMainImg = require("../controllers/business/addBlogMainImg");
 const addBlogArticle = require("../controllers/business/addBlogArticle");
 const getBlogData = require("../controllers/business/getBlogData");
 const getBlogsByCategory = require("../controllers/business/getBlogsByCategory");
 const getBlogDataToEdit = require("../controllers/business/getBlogDataToEdit");
+const removeBlog = require("../controllers/business/removeBlog");
 const getFullBlog = require("../controllers/business/getFullBlog");
 
-router.post("/", userGuard, assistantAdminGuard, addBlogs);
+const router = express.Router();
 
-router.patch("/blog-image/", userGuard, assistantAdminGuard, addBlogMainImg);
+router.post("/", userGuard, adminGuard, addBlogs);
 
-router.patch("/blog-article/", userGuard, assistantAdminGuard, addBlogArticle);
+router.patch("/blog-image/", userGuard, adminGuard, addBlogMainImg);
 
-router.get("/blog-data/", userGuard, assistantAdminGuard, getBlogData);
+router.patch("/blog-article/", userGuard, adminGuard, addBlogArticle);
+
+router.get("/blog-data/", userGuard, adminGuard, getBlogData);
 
 router.get("/blog-data/:categoryId", getBlogsByCategory);
 
-router.get(
-  "/blog-edit/:blogId",
-  userGuard,
-  assistantAdminGuard,
-  getBlogDataToEdit
-);
+router.get("/blog-edit/:blogId", userGuard, adminGuard, getBlogDataToEdit);
+
+router.delete("/:blogId", userGuard, adminGuard, removeBlog);
+
 router.get("/:blogId", getFullBlog);
 
 module.exports = router;

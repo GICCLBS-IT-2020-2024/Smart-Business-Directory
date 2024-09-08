@@ -28,7 +28,7 @@ async function addBlogMainImg(req, res) {
 
       // Delete previous image
       if (result && result.imageUrl) {
-        await deleteFile(result.imageUrl);
+        deleteFile(result.imageUrl);
       }
 
       res.send({ imageUrl: url + req.file.destination + req.file.filename });
