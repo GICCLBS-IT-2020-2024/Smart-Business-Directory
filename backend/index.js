@@ -7,6 +7,8 @@ const Blogs = require("./src/routes/blogs");
 const Category = require("./src/routes/category");
 const SavedBlogs = require("./src/routes/saved_blogs");
 const Counselling = require("./src/routes/counselling");
+require('dotenv').config();
+
 
 const port = process.env.PORT;
 const frontEndOrigin = process.env.FRONTEND_URL;
