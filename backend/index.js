@@ -5,17 +5,21 @@ const connectDB = require("./src/database/db");
 const User = require("./src/routes/user");
 const Blogs = require("./src/routes/blogs");
 const Category = require("./src/routes/category");
-const SavedBlogs = require("./src/routes/saved_blogs");
 const Counselling = require("./src/routes/counselling");
-require('dotenv').config();
+// require('dotenv').config();
 
 
 const port = process.env.PORT;
 const frontEndOrigin = process.env.FRONTEND_URL;
 
-const app = express();
 
+
+const app = express();
 app.use(cors({ origin: frontEndOrigin }));
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -36,7 +40,5 @@ app.use("/", User);
 app.use("/blogs", Blogs);
 
 app.use("/category", Category);
-
-app.use("/saved-blogs", SavedBlogs);
 
 app.use("/counselling", Counselling);

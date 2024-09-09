@@ -9,8 +9,6 @@
   border-radius: 10px;
   background-color: #f9f9f9;
   overflow: hidden; /* Prevent overflow */
-  
- 
 }
 /* Scrollbar Styling */
 .messages::-webkit-scrollbar {
@@ -32,7 +30,6 @@
   background-color: #a0522d; /* Slightly lighter brown when hovered */
 }
 
-
 .chatbot-container .padding {
   padding: 0 20px 20px 20px; /* Add padding to the bottom */
   display: flex;
@@ -49,7 +46,7 @@
   justify-content: start;
   background-color: #da7d00;
   padding: 10px;
-  
+
   color: white;
 }
 
@@ -128,14 +125,14 @@
   padding-top: 10px;
 }
 
-input[type='text'] {
+input[type="text"] {
   flex-grow: 1;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 10px;
 }
 
-button {
+.send-button {
   padding: 10px;
   background-color: #da7d00;
   color: white;
@@ -145,7 +142,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.send-button:hover {
   background-color: #da7d00;
 }
 
@@ -153,7 +150,8 @@ button:hover {
 .loader {
   width: 60px;
   aspect-ratio: 4;
-  background: radial-gradient(circle closest-side, #000 90%, #0000) 0/calc(100%/3) 100% space;
+  background: radial-gradient(circle closest-side, #000 90%, #0000) 0 /
+    calc(100% / 3) 100% space;
   clip-path: inset(0 100% 0 0);
   animation: l1 1s steps(4) infinite;
 }

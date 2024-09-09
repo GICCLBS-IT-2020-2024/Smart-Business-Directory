@@ -5,31 +5,18 @@ import { useSelector } from "react-redux";
 
 const userLinks = [
   { name: "Account Setting", path: "/profile", icon: UserCog },
-  {
-    name: "My Saved",
-    path: "/profile/my-saved",
-    icon: Bookmark,
-  },
 ];
 
-const assistantLinks = [
+const adminLinks = [
   {
     name: "Manage Blogs",
     path: "/profile/manage-blogs",
     icon: Book,
   },
-];
-
-const adminLinks = [
   {
     name: "Manage Categories",
     path: "/profile/manage-categories",
     icon: ListTree,
-  },
-  {
-    name: "Manage Assistants",
-    path: "/profile/manage-assistants",
-    icon: Handshake,
   },
 ];
 
@@ -40,11 +27,7 @@ export default function ProfileSidePanel() {
   let links = userLinks;
 
   if (user && user.role === "admin") {
-    links = userLinks.concat(assistantLinks).concat(adminLinks);
-  }
-
-  if (user && user.role === "assistant") {
-    links = userLinks.concat(assistantLinks);
+    links = userLinks.concat(adminLinks);
   }
 
   return (

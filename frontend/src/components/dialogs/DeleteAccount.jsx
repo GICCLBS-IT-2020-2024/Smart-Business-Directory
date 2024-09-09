@@ -1,19 +1,35 @@
+import { useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-  DialogTitle,
-  DialogClose,
-  DialogFooter,
-  DialogDescription,
-} from "../ui/dialog";
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import ErrorMessage from "../common/ErrorMessage";
+import isEmptyObject from "@/lib/isEmptyObject";
 import { Button } from "../ui/button";
+import { ButtonLoading } from "../common/ButtonLoading";
+import useDeleteAccount from "@/hooks/useDeleteAccount";
 
 export default function DeleteAccount() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { isLoading, error, deleteAccount } = useDeleteAccount();
+
+  async function deleteHandler() {
+    const ok = await deleteAccount();
+    if (ok) {
+      localStorage.removeItem("token");
+      setIsOpen(false);
+    }
+  }
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen} modal={false}>
+      <AlertDialogTrigger asChild>
         <Button
           variant="link"
           type="button"
@@ -22,22 +38,23 @@ export default function DeleteAccount() {
         >
           Delete Account
         </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Delete Account</DialogTitle>
-          <DialogDescription>
-            Are you sure you want to delete your account. You will not be able
-            to get your data back.
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">No</Button>
-          </DialogClose>
-          <Button variant="destructive">Yes</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </AlertDialogDescription>
+          {!isEmptyObject(error) && <ErrorMessage msg={error.msg} />}
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <ButtonLoading isLoading={isLoading} onClick={deleteHandler}>
+            Yes
+          </ButtonLoading>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }

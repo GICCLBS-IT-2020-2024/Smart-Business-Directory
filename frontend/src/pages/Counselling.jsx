@@ -1,17 +1,27 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { BusinessCounseling } from "@/components/forms/BusinessCounselling";
+import SuggestedBiz from "@/components/sections/SuggestedBiz";
 
 export default function Counselling() {
+  const [suggest, setSuggest] = useState([]);
+  const [didFind, setDidFind] = useState(false);
+
+  if (typeof suggest !== undefined && didFind) {
+    return (
+      <SuggestedBiz
+        suggest={suggest}
+        setSuggest={setSuggest}
+        setDidFind={setDidFind}
+      />
+    );
+  }
+
   return (
-    <section className="flex flex-col flex-grow items-center justify-center">
-      <div className="flex gap-4">
-        <Link to="/counselling/new-business" className="active:scale-95">
-          <Button>Start a New Business</Button>
-        </Link>
-        <Link to="/counselling/exist-business" className="active:scale-95">
-          <Button>Already Own a Business</Button>
-        </Link>
-      </div>
-    </section>
+    <div className="flex flex-col flex-grow my-section gap-8">
+      <h3 className="h3 text-center">
+        Complete this form to receive tailored business recommendations.
+      </h3>
+      <BusinessCounseling setSuggest={setSuggest} setDidFind={setDidFind} />
+    </div>
   );
 }

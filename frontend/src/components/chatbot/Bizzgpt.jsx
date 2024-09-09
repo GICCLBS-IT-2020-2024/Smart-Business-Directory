@@ -56,7 +56,7 @@ const BizzGPT = () => {
             >
               {message.sender === "user" && (
                 <img
-                  src="./img/user.png"
+                  src="./defaultAvatar.jpeg"
                   alt="User Avatar"
                   className="avatar"
                 />
@@ -91,7 +91,9 @@ const BizzGPT = () => {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type your message..."
           />
-          <button onClick={handleSendMessage}>Send</button>
+          <button className="send-button" onClick={handleSendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </div>

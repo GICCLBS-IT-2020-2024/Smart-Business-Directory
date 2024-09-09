@@ -31,7 +31,7 @@ export default function MyDropZone({ field, form, fileData, setFileData }) {
       maxFiles={1}
       multiple={false}
       autoFocus={true}
-      maxSize={5 * 1024 * 1024} //5Mb
+      maxSize={5 * 1024 * 1024 * 100} //5Mb
       onDropAccepted={onAccepted}
       onDropRejected={onDropRejected}
       onError={onError}

@@ -29,7 +29,7 @@ async function changeAvatar(req, res) {
 
       // Delete previous avatar
       if (result && result.avatar) {
-        await deleteFile(result.avatar);
+        deleteFile(result.avatar);
       }
 
       res.send({ avatar: url + req.file.destination + req.file.filename });

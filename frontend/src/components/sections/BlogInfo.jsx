@@ -4,9 +4,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
-import { ButtonLoading } from "../common/ButtonLoading";
 
 export default function BlogInfo({ data }) {
   return (
@@ -16,9 +14,8 @@ export default function BlogInfo({ data }) {
           <img
             src={data.imageUrl || "/Buildings.jpg"}
             alt="image"
-            className="rounded-md object-cover w-full md:max-w-[500px]"
+            className="rounded-md object-cover w-full h-[300px]"
           />
-          <ButtonLoading className="w-full">Save</ButtonLoading>
         </CardContent>
         <CardHeader>
           <CardTitle className="h1">{data.title}</CardTitle>

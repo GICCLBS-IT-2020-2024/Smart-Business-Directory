@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import {
   Card,
   CardContent,
@@ -15,7 +16,7 @@ export default function BlogCard({ data }) {
           <img
             src={data.imageUrl || "/Buildings.jpg"}
             alt="image"
-            className="rounded-md object-cover"
+            className="rounded-md object-cover h-[200px] w-full"
           />
         </CardContent>
         <CardHeader>

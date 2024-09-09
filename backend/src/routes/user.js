@@ -8,12 +8,15 @@ const verifyToken = require("../controllers/user/verifyToken");
 const changeUsername = require("../controllers/user/changeUsername");
 const changeAvatar = require("../controllers/user/changeAvatar");
 const removeAvatar = require("../controllers/user/removeAvatar");
+const deleteAccount = require("../controllers/user/deleteAccount");
 const userGuard = require("../middlewares/userGuard");
 
 const router = express.Router();
 
 // register a user
 router.post("/", register);
+
+router.delete("/", userGuard, deleteAccount);
 
 // login a user
 router.post("/login/", logIn);
