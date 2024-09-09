@@ -1,6 +1,4 @@
-Here’s a sample `README.md` for your Final Year Project (FYP) on the **Business Consulting Platform with AI Chatbot**:
 
----
 
 # Business Consulting Platform with AI Chatbot
 
