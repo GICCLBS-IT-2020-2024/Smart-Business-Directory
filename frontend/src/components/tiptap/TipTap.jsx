@@ -52,7 +52,8 @@ export default function TipTap({ blog, onChange }) {
     content: blog,
     editorProps: {
       attributes: {
-        class: "border rounded-md border-input bg-background min-h-[150px] p-2",
+        class:
+          "rounded-md border border-input bg-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 min-h-[150px] p-2",
       },
     },
     onUpdate({}) {
@@ -60,7 +61,7 @@ export default function TipTap({ blog, onChange }) {
     },
   });
   return (
-    <div>
+    <div className="space-y-2">
       <Toolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

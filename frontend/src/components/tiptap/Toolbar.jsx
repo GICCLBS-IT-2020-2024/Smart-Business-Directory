@@ -5,45 +5,18 @@ import {
   Strikethrough,
   List,
   ListOrdered,
-  Heading2,
-  Heading4,
-  Heading6,
 } from "lucide-react";
+import ComboBoxForHeading from "./ComboBoxForHeading";
 import { Toggle } from "../ui/toggle";
 
 export default function Toolbar({ editor }) {
   if (!editor) {
     return null;
   }
+
   return (
-    <div>
-      <Toggle
-        size="sm"
-        pressed={editor.isActive("heading", { level: 2 })}
-        onPressedChange={() =>
-          editor.chain().focus().toggleHeading({ level: 2 }).run()
-        }
-      >
-        <Heading2 className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        size="sm"
-        pressed={editor.isActive("heading", { level: 4 })}
-        onPressedChange={() =>
-          editor.chain().focus().toggleHeading({ level: 4 }).run()
-        }
-      >
-        <Heading4 className="h-4 w-4" />
-      </Toggle>
-      <Toggle
-        size="sm"
-        pressed={editor.isActive("heading", { level: 6 })}
-        onPressedChange={() =>
-          editor.chain().focus().toggleHeading({ level: 6 }).run()
-        }
-      >
-        <Heading6 className="h-4 w-4" />
-      </Toggle>
+    <div className="bg-card flex gap-2 px-2 py-1 rounded-md shadow z-20 sticky top-12">
+      <ComboBoxForHeading editor={editor} />
       <Toggle
         size="sm"
         pressed={editor.isActive("bold")}
