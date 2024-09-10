@@ -24,7 +24,6 @@ export default function ProtectedLayout({ children }) {
   }, [isLoggedIn]);
 
   if (!isLoggedIn) {
-    console.log("sdsa");
     return <Navigate to="/" replace={true} />;
   }
 

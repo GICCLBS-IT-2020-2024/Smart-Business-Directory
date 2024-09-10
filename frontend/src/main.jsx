@@ -21,14 +21,17 @@ import { categoriesLoader } from "./lib/loaders/categoriesLoader";
 import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
 import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
 import { fullBlogDataLoader } from "./lib/loaders/fullBlogDataLoader";
+import ProtectedForAdmin from "./layouts/ProtectedForAdmin";
 import "./index.css";
 import ProtectedLayout from "./layouts/ProtectedLayout";
+import ErrorElement from "./components/common/ErrorElement";
 import { latestBlogsLoader } from "./lib/loaders/latestBlogsLoader";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorElement />,
     loader: categoriesLoader,
     children: [
       {
@@ -67,11 +70,19 @@ const router = createBrowserRouter([
           },
           {
             path: "manage-blogs",
-            element: <ManageBlogs />,
+            element: (
+              <ProtectedForAdmin>
+                <ManageBlogs />
+              </ProtectedForAdmin>
+            ),
           },
           {
             path: "manage-categories",
-            element: <ManageCategories />,
+            element: (
+              <ProtectedForAdmin>
+                <ManageCategories />
+              </ProtectedForAdmin>
+            ),
           },
         ],
       },
@@ -91,7 +102,9 @@ const router = createBrowserRouter([
                 index: true,
                 element: (
                   <ProtectedLayout>
-                    <AddBlogs />
+                    <ProtectedForAdmin>
+                      <AddBlogs />
+                    </ProtectedForAdmin>
                   </ProtectedLayout>
                 ),
               },
@@ -99,7 +112,9 @@ const router = createBrowserRouter([
                 path: ":blogId",
                 element: (
                   <ProtectedLayout>
-                    <AddBlogs />
+                    <ProtectedForAdmin>
+                      <AddBlogs />
+                    </ProtectedForAdmin>
                   </ProtectedLayout>
                 ),
                 loader: blogsDataToEditLoader,
@@ -111,10 +126,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-if (typeof window !== "undefined" && !window.setImmediate) {
-  window.setImmediate = (fn, ...args) => setTimeout(fn, 0, ...args);
-}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
