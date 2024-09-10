@@ -15,7 +15,6 @@ export default function useRemoveBlog() {
     setError({});
     try {
       const res = await userInstance.delete(`/blogs/${id}`);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error, "useRemoveBlog");

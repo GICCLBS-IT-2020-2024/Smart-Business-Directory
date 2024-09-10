@@ -13,10 +13,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { ButtonLoading } from "../common/ButtonLoading";
-import { DialogFooter } from "../ui/dialog";
 import isEmptyObject from "@/lib/isEmptyObject";
 import ErrorMessage from "../common/ErrorMessage";
 import useAddBusiness from "@/hooks/useAddBusiness";
@@ -33,9 +33,9 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
     resolver: zodResolver(addBusinessFormSchema),
     defaultValues: {
       id: "",
-      title: "", // Ensure this is an empty string
-      category: "", // or null depending on your form field type
-      description: "", // Same for description
+      title: "",
+      category: "",
+      description: "",
     },
   });
 
@@ -84,6 +84,12 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
         title: res.title,
         description: res.description,
       });
+    }
+    if (res) {
+      const toastId = toast("Blog data has been saved.", {
+        duration: 2000,
+      });
+      window.addEventListener("scroll", () => toast.dismiss(toastId));
     }
   }
 
@@ -168,12 +174,12 @@ export default function AddBizBasicInfo({ blogData, setBlogData }) {
             </FormItem>
           )}
         />
-        <DialogFooter>
+        <div className="flex flex-row-reverse gap-2">
           <Button type="button" onClick={reset} variant="outline">
             Reset
           </Button>
           <ButtonLoading isLoading={isLoading}>Submit</ButtonLoading>
-        </DialogFooter>
+        </div>
       </form>
     </Form>
   );

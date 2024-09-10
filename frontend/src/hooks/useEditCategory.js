@@ -24,7 +24,6 @@ export default function useEditCategory() {
         return true;
       }
       const res = await userInstance.patch("/category", data);
-      console.log(res.data);
       dispatch(editCategoryState(res.data));
       return true;
     } catch (error) {

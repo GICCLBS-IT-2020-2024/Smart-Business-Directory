@@ -2,16 +2,16 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { setCategories } from "@/store/states/categories";
 import useVerifyToken from "@/hooks/useVerifyToken";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
-import { useToast } from "@/components/ui/use-toast";
 import isEmptyObject from "@/lib/isEmptyObject";
 import Spinner from "@/components/common/Spinner";
 
 export default function RootLayout() {
-  const { toast } = useToast();
   const { isLoading, error, verifyToken } = useVerifyToken();
   const dispatch = useDispatch();
   const data = useLoaderData();
@@ -30,11 +30,14 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (!isEmptyObject(error)) {
-      toast({
-        variant: "destructive",
-        title: "LogIn failed",
-        description: error.msg,
-      });
+      toast(
+        <div className="text-destructive">
+          Your token has been expired please login again.
+        </div>,
+        {
+          duration: 2000,
+        }
+      );
     }
   }, [error]);
 
@@ -47,6 +50,7 @@ export default function RootLayout() {
           <Navbar />
           <ScrollRestoration />
           <Outlet />
+          <Toaster />
           <Footer />
         </>
       )}

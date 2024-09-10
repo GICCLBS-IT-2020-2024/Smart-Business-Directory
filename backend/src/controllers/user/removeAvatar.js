@@ -13,7 +13,6 @@ async function removeAvatar(req, res) {
       deleteFile(user.avatar);
       user.avatar = undefined;
       await user.save();
-      console.log(user);
       res.send({ ok: true });
     }
   } catch (error) {

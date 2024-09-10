@@ -18,18 +18,9 @@ async function getBlogDataToEdit(req, res) {
     };
     res.send(formattedBlog);
   } catch (error) {
-    console.log(121232);
     console.log(error, "getBlogDataToEdit");
-    const errRes = customErrorHandler(error);
+    const errRes = errorHandler(error);
     res.status(errRes.status).json(errRes.errors);
-  }
-}
-
-function customErrorHandler(error) {
-  try {
-    return errorHandler(error);
-  } catch (error) {
-    return errorHandler(error);
   }
 }
 

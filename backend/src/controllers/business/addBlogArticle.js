@@ -14,22 +14,13 @@ async function addBlogs(req, res) {
         runValidators: true,
       }
     );
-    console.log(newBlogs);
     res.send({
       blog: newBlogs.blog,
     });
   } catch (error) {
     console.log(error, "addBlogArticle");
-    const errRes = customErrorHandler(error);
+    const errRes = errorHandler(error);
     res.status(errRes.status).json(errRes.errors);
-  }
-}
-
-function customErrorHandler(error) {
-  try {
-    return errorHandler(error);
-  } catch (error) {
-    return errorHandler(error);
   }
 }
 

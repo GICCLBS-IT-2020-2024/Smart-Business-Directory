@@ -29,7 +29,6 @@ export default function AddCategoryForm() {
 
   useEffect(() => {
     if (!isEmptyObject(error) && error.category) {
-      console.log(error.category);
       form.setError(
         "category",
         { message: error.category },

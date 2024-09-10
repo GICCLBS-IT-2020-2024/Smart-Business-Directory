@@ -17,7 +17,6 @@ export default function useAddCategory() {
     setError({});
     try {
       const res = await userInstance.post("/category", data);
-      console.log(res);
       dispatch(addCategoryAction(res.data));
       return true;
     } catch (error) {

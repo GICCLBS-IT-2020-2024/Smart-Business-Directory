@@ -8,6 +8,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import { toast } from "sonner";
 import { ButtonLoading } from "../common/ButtonLoading";
 import ErrorMessage from "../common/ErrorMessage";
 import isEmptyObject from "@/lib/isEmptyObject";
@@ -37,6 +38,10 @@ export default function AddBlogMainImg({ blogData, setBlogData }) {
     removeCachedData(keyGenerateForBlogToEdit(values.id));
     const res = await uploadImg(getFormData(values));
     setBlogData({ ...blogData, imageUrl: res.imageUrl });
+    if (res) {
+      const toastId = toast("Image has been uploaded", { duration: 2000 });
+      window.addEventListener("scroll", () => toast.dismiss(toastId));
+    }
   }
 
   return (
@@ -67,10 +72,11 @@ export default function AddBlogMainImg({ blogData, setBlogData }) {
             </FormItem>
           )}
         />
-
-        <ButtonLoading type="submit" isLoading={isLoading}>
-          Ok
-        </ButtonLoading>
+        <div className="flex flex-row-reverse">
+          <ButtonLoading type="submit" isLoading={isLoading}>
+            Ok
+          </ButtonLoading>
+        </div>
       </form>
     </Form>
   );

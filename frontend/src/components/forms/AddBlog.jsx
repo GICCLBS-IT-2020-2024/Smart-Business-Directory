@@ -16,6 +16,7 @@ import {
 import TipTap from "../tiptap/TipTap";
 import { removeCachedData } from "../../lib/cachedData";
 import { keyGenerateForBlogToEdit } from "../../lib/loaders/blogsDataToEditLoader";
+import { toast } from "sonner";
 
 export default function AddBlog({ blogData, setBlogData }) {
   const { isLoading, error, addArticle } = useAddBlogArticle();
@@ -26,8 +27,6 @@ export default function AddBlog({ blogData, setBlogData }) {
       blog: "",
     },
   });
-
-  console.log(blogData);
 
   useEffect(() => {
     if (blogData) {
@@ -45,6 +44,12 @@ export default function AddBlog({ blogData, setBlogData }) {
       ...blogData,
       blog: res.blog,
     });
+    if (res) {
+      const toastId = toast("Blog has been saved.", {
+        duration: 2000,
+      });
+      window.addEventListener("scroll", () => toast.dismiss(toastId));
+    }
   }
 
   return (
@@ -63,9 +68,11 @@ export default function AddBlog({ blogData, setBlogData }) {
             </FormItem>
           )}
         />
-        <ButtonLoading type="submit" isLoading={isLoading}>
-          Submit
-        </ButtonLoading>
+        <div className="flex flex-row-reverse">
+          <ButtonLoading type="submit" isLoading={isLoading}>
+            Submit
+          </ButtonLoading>
+        </div>
       </form>
     </Form>
   );

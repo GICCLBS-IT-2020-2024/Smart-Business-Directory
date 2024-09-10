@@ -33,7 +33,6 @@ export default function EditCategoryForm({ id, setIsOpen }) {
   });
 
   async function onSubmit(values) {
-    console.log(values);
     const ok = await editCategory(values);
     if (ok) {
       setIsOpen(false);

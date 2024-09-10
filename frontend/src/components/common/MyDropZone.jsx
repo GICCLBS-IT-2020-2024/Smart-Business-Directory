@@ -10,7 +10,6 @@ export default function MyDropZone({ field, form, fileData, setFileData }) {
     });
     setFileData({ ...fileData, filePreview: preview.preview });
     form.setValue(field.name, file);
-    console.log(fileData);
   };
 
   const onDropRejected = (rejectedFiles) => {

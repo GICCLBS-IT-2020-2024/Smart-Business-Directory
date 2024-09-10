@@ -13,7 +13,6 @@ export default function useCounselNewBusiness() {
     setError({});
     try {
       const res = await userInstance.post("/counselling", data);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error, "useCounselNewBusiness");

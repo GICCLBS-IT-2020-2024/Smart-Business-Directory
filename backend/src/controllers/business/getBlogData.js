@@ -22,16 +22,8 @@ async function getBlogData(req, res) {
     res.send(formattedBlogs);
   } catch (error) {
     console.log(error, "getBlogData");
-    const errRes = customErrorHandler(error);
+    const errRes = errorHandler(error);
     res.status(errRes.status).json(errRes.errors);
-  }
-}
-
-function customErrorHandler(error) {
-  try {
-    return errorHandler(error);
-  } catch (error) {
-    return errorHandler(error);
   }
 }
 

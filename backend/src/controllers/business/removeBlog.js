@@ -24,16 +24,8 @@ async function addBlogs(req, res) {
     });
   } catch (error) {
     console.log(error, "removeBusiness");
-    const errRes = customErrorHandler(error);
+    const errRes = errorHandler(error);
     res.status(errRes.status).json(errRes.errors);
-  }
-}
-
-function customErrorHandler(error) {
-  try {
-    return errorHandler(error);
-  } catch (error) {
-    return errorHandler(error);
   }
 }
 

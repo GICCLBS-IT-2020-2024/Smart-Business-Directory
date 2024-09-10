@@ -16,7 +16,6 @@ import AddBlogs from "./pages/AddBlogs";
 import BlogByCategory from "./pages/BlogByCategory";
 import Business from "./pages/Business";
 import store from "./store/store";
-import { Toaster } from "@/components/ui/toaster";
 import { categoriesLoader } from "./lib/loaders/categoriesLoader";
 import { blogsByCategoryLoader } from "./lib/loaders/blogsByCategoryLoader";
 import { blogsDataToEditLoader } from "./lib/loaders/blogsDataToEditLoader";
@@ -130,9 +129,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router}>
-        <Toaster />
-      </RouterProvider>
+      <RouterProvider router={router} />
     </Provider>
   </React.StrictMode>
 );

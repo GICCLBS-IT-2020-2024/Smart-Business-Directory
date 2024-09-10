@@ -11,16 +11,8 @@ async function getFullBlog(req, res) {
     res.send(blog);
   } catch (error) {
     console.log(error, "getBlogsByCategory");
-    const errRes = customErrorHandler(error);
+    const errRes = errorHandler(error);
     res.status(errRes.status).json(errRes.errors);
-  }
-}
-
-function customErrorHandler(error) {
-  try {
-    return errorHandler(error);
-  } catch (error) {
-    return errorHandler(error);
   }
 }
 

@@ -3,7 +3,6 @@ const errorHandler = require("../../helpers/errorHandler");
 
 async function getLatestBlogs(req, res) {
   try {
-    const { categoryId } = req.params;
     const blogs = await Blogs.find({})
       .sort({ updatedAt: -1 })
       .limit(9)

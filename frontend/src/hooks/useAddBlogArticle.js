@@ -15,7 +15,6 @@ export default function useAddBlogArticle() {
     setError({});
     try {
       const res = await userInstance.patch("/blogs/blog-article", data);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error, "useAddBusiness");

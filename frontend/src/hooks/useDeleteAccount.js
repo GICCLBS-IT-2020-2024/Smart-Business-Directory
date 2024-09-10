@@ -13,7 +13,6 @@ export default function useDeleteAccount() {
   const userInstance = createMainInstance(false, token);
 
   async function deleteAccount() {
-    console.log("as");
     setIsLoading(true);
     setError({});
     try {
