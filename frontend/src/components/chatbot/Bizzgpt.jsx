@@ -20,10 +20,10 @@ const BizzGPT = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8000/api/chat", {
+      const response = await axios.post("http://localhost:8000/api/chat/", {
         message: input,
       });
-      const botMessage = { text: response.data.text, sender: "bot" };
+      const botMessage = { text: response.data.response, sender: "bot" };
       setMessages([...messages, userMessage, botMessage]);
     } catch (error) {
       console.error("Error sending message:", error);

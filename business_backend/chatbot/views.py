@@ -80,19 +80,19 @@ class ChatbotView(APIView):
         return Response({'response': response}, status=status.HTTP_200_OK)
 
     
-    def verify_token(self, token):
-        verification_url = 'https://node-backend-url/verify-token'
-        headers = {'Authorization': token}
+    # def verify_token(self, token):
+    #     verification_url = 'https://node-backend-url/verify-token'
+    #     headers = {'Authorization': token}
         
-        try:
-            response = requests.get(verification_url, headers=headers, timeout=5)
-            return response.status_code == status.HTTP_200_OK
-        except ConnectionError:
-            logger.error("Connection error during token verification.")
-            return False
-        except Timeout:
-            logger.error("Request timed out during token verification.")
-            return False
-        except requests.RequestException as e:
-            logger.error(f"Token verification failed: {e}")
-            return False
+    #     try:
+    #         response = requests.get(verification_url, headers=headers, timeout=5)
+    #         return response.status_code == status.HTTP_200_OK
+    #     except ConnectionError:
+    #         logger.error("Connection error during token verification.")
+    #         return False
+    #     except Timeout:
+    #         logger.error("Request timed out during token verification.")
+    #         return False
+    #     except requests.RequestException as e:
+    #         logger.error(f"Token verification failed: {e}")
+    #         return False
