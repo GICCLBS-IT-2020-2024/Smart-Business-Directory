@@ -5,8 +5,8 @@ import "./Chatbot.css";
 const BizzGPT = () => {
   const [messages, setMessages] = useState([
     {
-      text: "Hello! I'm BizzAI, a business counseling chatbot. Please provide your name so I can offer personalized advice.",
-      sender: "bot",
+      // text: "Hello! I'm BizzAI, a business counseling chatbot. Please provide your name so I can offer personalized advice.",
+      // sender: "bot",
     },
   ]);
   const [input, setInput] = useState("");
