@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import RootLayout from "./layouts/RootLayout";
+import NoFooterLayout from "./layouts/NoFooterLayout";
 import Home from "./pages/Home";
 import AccountSetting from "./pages/AccountSetting";
 import BizGPT from "./pages/BizGPT";
@@ -41,10 +42,6 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
-      },
-      {
-        path: "ai-bot",
-        element: <BizGPT />,
       },
       {
         path: ":category",
@@ -123,6 +120,11 @@ const router = createBrowserRouter([
         ],
       },
     ],
+  },
+  {
+    path: "/ai-bot",
+    element: <NoFooterLayout />,
+    children: [{ index: true, element: <BizGPT /> }],
   },
 ]);
 
