@@ -162,3 +162,28 @@
 }
 
 /* spinner end */
+
+/* scroll bar start */
+
+*::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent; /* Background of the track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(
+    var(--muted-foreground)
+  ); /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Roundness of the thumb */
+}
+
+/* For Firefox */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary)) transparent; /* thumb color and track color */
+}
+
+/* scrol bar end */

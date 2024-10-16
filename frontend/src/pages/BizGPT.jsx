@@ -7,7 +7,9 @@ import BotChats from "@/components/sections/BotChats";
 export default function BizGPT() {
   return (
     <div className="flex-grow">
-      <BizzGPT />
+      {true ? <BotChats /> : <BotFAQ />}
+
+      <BotForm />
     </div>
   );
 }
