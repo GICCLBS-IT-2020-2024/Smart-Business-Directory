@@ -54,7 +54,7 @@ export default function BotForm() {
   }
 
   return (
-    <div className="fixed bottom-0 z-10 flex items-center justify-center w-full pb-4 px-2 sm:px-4 md:px-8 lg:px-16">
+    <div className="fixed bottom-0 z-10 flex items-center justify-center w-full pb-4 px-2 sm:px-4 md:px-8 lg:px-16 bg-background ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -68,7 +68,7 @@ export default function BotForm() {
                 <FormControl>
                   <Textarea
                     ref={textareaRef}
-                    placeholder="Tell us a little bit about yourself"
+                    placeholder="Ask any question related to business"
                     className="focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent min-h-0 px-0 py-0 resize-none"
                     rows="1"
                     onKeyDown={handleKeyDown}

@@ -19,7 +19,7 @@ export default function AccountSetting() {
             <ChangeAvatar />
           </span>
           <Avatar className="w-24 h-24">
-            <AvatarImage src={user.avatar} />
+            <AvatarImage src={user?.avatar} />
             <AvatarFallback className="bg-secondary">
               {user ? user.username.charAt(0) : "B"}
             </AvatarFallback>
