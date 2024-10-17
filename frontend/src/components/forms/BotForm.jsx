@@ -13,8 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
 import { ButtonLoading } from "../common/ButtonLoading";
+import useChatBiz from "@/hooks/useChatBiz";
 
 export default function BotForm() {
+  const { isLoading, error, chat } = useChatBiz();
   const textareaRef = useRef(null);
   const form = useForm({
     resolver: zodResolver(botMessageSchema),
@@ -29,17 +31,18 @@ export default function BotForm() {
     if (textarea) {
       textarea.style.height = "auto";
       const singleLineHeight = parseInt(getComputedStyle(textarea).lineHeight);
-      textarea.style.height = `${Math.min(
-        textarea.scrollHeight,
-        parseFloat(maxHeight)
-      )}px`;
       if (textarea.scrollHeight <= singleLineHeight) {
-        textarea.style.height = "auto"; // Set height to single line height
+        textarea.style.height = "auto";
+      } else {
+        textarea.style.height = `${Math.min(
+          textarea.scrollHeight,
+          parseFloat(maxHeight)
+        )}px`;
       }
     }
   };
 
-  // function to submit for if press enter in a textarea
+  // function to submit form if press enter in a textarea
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -49,6 +52,7 @@ export default function BotForm() {
 
   async function onSubmit(values) {
     console.log(values);
+    await chat(values);
     form.reset();
     textareaRef.current.style.height = "auto";
   }
@@ -69,7 +73,7 @@ export default function BotForm() {
                   <Textarea
                     ref={textareaRef}
                     placeholder="Ask any question related to business"
-                    className="focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent min-h-0 px-0 py-0 resize-none"
+                    className="focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent min-h-0 px-0 py-0 resize-none scrollbar-thin"
                     rows="1"
                     onKeyDown={handleKeyDown}
                     onChange={(e) => {

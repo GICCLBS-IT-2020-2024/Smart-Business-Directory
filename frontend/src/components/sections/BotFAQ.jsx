@@ -1,5 +1,23 @@
-import React from "react";
+import { Button } from "../ui/button";
+
+const questions = [
+  "What are the advantages of having a side business?",
+  "How to increase sales revenue in poultry farm business?",
+  "Does starting a candles making business a good idea?",
+];
 
 export default function BotFAQ() {
-  return <div className="px-2 sm:px-4 md:px-8 lg:px-16">BotFAQ</div>;
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 sm:grid-cols-2 gap-4 place-items-center">
+      {questions.map((q, index) => (
+        <Button
+          key={index}
+          variant="outline"
+          className="text-wrap text-start active:scale-95 transition-transform w-fit h-fit"
+        >
+          {q}
+        </Button>
+      ))}
+    </div>
+  );
 }

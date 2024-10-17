@@ -183,7 +183,7 @@
 /* For Firefox */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: hsl(var(--primary)) transparent; /* thumb color and track color */
+  scrollbar-color: hsl(var(--muted-foreground)) transparent; /* thumb color and track color */
 }
 
 /* scrol bar end */
