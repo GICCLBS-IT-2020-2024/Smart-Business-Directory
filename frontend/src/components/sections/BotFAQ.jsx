@@ -1,4 +1,5 @@
 import { Button } from "../ui/button";
+import useChatBiz from "@/hooks/useChatBiz";
 
 const questions = [
   "What are the advantages of having a side business?",
@@ -7,6 +8,7 @@ const questions = [
 ];
 
 export default function BotFAQ() {
+  const { chat } = useChatBiz();
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 2xl:grid-cols-4 sm:grid-cols-2 gap-4 place-items-center">
       {questions.map((q, index) => (
@@ -14,6 +16,7 @@ export default function BotFAQ() {
           key={index}
           variant="outline"
           className="text-wrap text-start active:scale-95 transition-transform w-fit h-fit"
+          onClick={() => chat({ message: q })}
         >
           {q}
         </Button>

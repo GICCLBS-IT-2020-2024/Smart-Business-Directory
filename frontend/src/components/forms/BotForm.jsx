@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import { botMessageSchema } from "@/lib/zod/botMessageSchema";
 import {
   Form,
@@ -12,7 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
-import { ButtonLoading } from "../common/ButtonLoading";
+import { Button } from "@/components/ui/button";
 import useChatBiz from "@/hooks/useChatBiz";
 
 export default function BotForm() {
@@ -51,10 +51,14 @@ export default function BotForm() {
   };
 
   async function onSubmit(values) {
-    console.log(values);
-    await chat(values);
-    form.reset();
-    textareaRef.current.style.height = "auto";
+    try {
+      await chat(values);
+      form.reset();
+      textareaRef.current.style.height = "auto";
+    } finally {
+      form.reset();
+      textareaRef.current.style.height = "auto";
+    }
   }
 
   return (
@@ -87,9 +91,18 @@ export default function BotForm() {
               </FormItem>
             )}
           />
-          <ButtonLoading type="submit" size="icon" className="self-end">
-            <Send className="mt-[4px] mr-[4px]" />
-          </ButtonLoading>
+          <Button
+            type="submit"
+            size="icon"
+            className="self-end"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader2 className="h-6 w-6 animate-spin" />
+            ) : (
+              <Send className="mt-[4px] mr-[4px]" />
+            )}
+          </Button>
         </form>
       </Form>
     </div>
