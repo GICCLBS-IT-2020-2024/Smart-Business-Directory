@@ -32,7 +32,7 @@ export default function useVerifyEmail() {
       dispatch(logIn(res.data));
       storeInLocal(res.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

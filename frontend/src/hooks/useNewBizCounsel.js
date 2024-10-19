@@ -15,7 +15,7 @@ export default function useCounselNewBusiness() {
       const res = await userInstance.post("/counselling", data);
       return res.data;
     } catch (error) {
-      console.log(error, "useCounselNewBusiness");
+      console.error(error, "useCounselNewBusiness");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

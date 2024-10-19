@@ -12,9 +12,9 @@ export default function useResendOtp() {
     setIsLoading(true);
     setError({});
     try {
-      const res = await userInstance.post("/resend-otp/", data);
+      await userInstance.post("/resend-otp/", data);
     } catch (error) {
-      console.log(error, "useResendOtp");
+      console.error(error, "useResendOtp");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

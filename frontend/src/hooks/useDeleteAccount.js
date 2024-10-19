@@ -20,7 +20,7 @@ export default function useDeleteAccount() {
       dispatch(logOut());
       return true;
     } catch (error) {
-      console.log(error, "useDeleteAccount");
+      console.error(error, "useDeleteAccount");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

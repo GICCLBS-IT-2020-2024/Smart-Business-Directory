@@ -27,7 +27,7 @@ export default function useEditCategory() {
       dispatch(editCategoryState(res.data));
       return true;
     } catch (error) {
-      console.log(error, "useEditCategory");
+      console.error(error, "useEditCategory");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

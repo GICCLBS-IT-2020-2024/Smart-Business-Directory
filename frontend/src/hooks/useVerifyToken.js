@@ -25,7 +25,7 @@ export default function useVerifyToken() {
       dispatch(logIn(res.data));
       return { ok: true };
     } catch (error) {
-      console.log(error, "useVerifyToken");
+      console.error(error, "useVerifyToken");
       dispatch(logOut());
       localStorage.removeItem("token");
       setError(errorHandler(error));

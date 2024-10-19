@@ -34,7 +34,7 @@ export default function useChatBiz() {
       );
       return true;
     } catch (error) {
-      console.log(error, "useChatBiz");
+      console.error(error, "useChatBiz");
       dispatch(
         updateBotLastMessage({
           bot: {

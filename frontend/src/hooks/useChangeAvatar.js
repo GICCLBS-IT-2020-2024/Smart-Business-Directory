@@ -20,7 +20,7 @@ export default function useChangeAvatar() {
       dispatch(updateAvatar(res.data.avatar));
       return true;
     } catch (error) {
-      console.log(error, "useChangeAvatar");
+      console.error(error, "useChangeAvatar");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);
