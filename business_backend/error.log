@@ -1296,10 +1296,17 @@ Traceback (most recent call last):
   File "C:\Python312\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
     response = handler(request, *args, **kwargs)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<<<<<<< HEAD
+  File "C:\Users\It Zone\OneDrive - huzaifa51\Desktop\FYP\Smart-Business-Directory\business_backend\chatbot\views.py", line 81, in post
+    response = generate_response(user_input)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\It Zone\OneDrive - huzaifa51\Desktop\FYP\Smart-Business-Directory\business_backend\chatbot\views.py", line 57, in generate_response
+=======
   File "C:\Users\HAMAD\Desktop\FYP\Smart-Business-Directory\business_backend\chatbot\views.py", line 81, in post
     response = generate_response(user_input)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\HAMAD\Desktop\FYP\Smart-Business-Directory\business_backend\chatbot\views.py", line 57, in generate_response
+>>>>>>> dcd55d17476e8bc9d5acaf70a66a419af9b32f23
     ai_msg = llm.invoke(messages)
              ^^^^^^^^^^^^^^^^^^^^
   File "C:\Python312\Lib\site-packages\langchain_core\language_models\chat_models.py", line 277, in invoke
@@ -1400,4 +1407,8 @@ metadata {
   url: "https://cloud.google.com/docs/quotas/help/request_increase"
 }
 ]
+<<<<<<< HEAD
+"POST /api/chat/ HTTP/1.1" 500 265003
+=======
 "POST /api/chat/ HTTP/1.1" 500 260727
+>>>>>>> dcd55d17476e8bc9d5acaf70a66a419af9b32f23
