@@ -20,7 +20,7 @@ export default function useRemoveAvatar() {
       dispatch(updateAvatar("/defaultAvatar.jpeg"));
       return true;
     } catch (error) {
-      console.log(error, "useRemoveAvatar");
+      console.error(error, "useRemoveAvatar");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

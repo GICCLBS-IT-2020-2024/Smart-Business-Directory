@@ -21,7 +21,7 @@ export default function useRegister() {
       dispatch(openVerifyEmail());
       return res.data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

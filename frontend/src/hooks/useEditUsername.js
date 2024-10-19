@@ -23,7 +23,7 @@ export default function useEditUsername() {
       dispatch(updateName(res.data.username));
       return true;
     } catch (error) {
-      console.log(error, "useEditUsername");
+      console.error(error, "useEditUsername");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

@@ -20,7 +20,7 @@ export default function useAddCategory() {
       dispatch(addCategoryAction(res.data));
       return true;
     } catch (error) {
-      console.log(error, "useAddCategory");
+      console.error(error, "useAddCategory");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

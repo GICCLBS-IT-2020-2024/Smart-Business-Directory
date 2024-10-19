@@ -17,7 +17,7 @@ export default function useAddBlogImg() {
       const res = await userInstance.patch("/blogs/blog-image", formData);
       return res.data;
     } catch (error) {
-      console.log(error, "useAddBlogImg");
+      console.error(error, "useAddBlogImg");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

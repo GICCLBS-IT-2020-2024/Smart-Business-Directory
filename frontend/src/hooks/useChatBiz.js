@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { marked } from "marked";
 import { errorHandler } from "@/lib/errorHandler";
 import { createAIInstance } from "@/lib/axios";
 import { addMessage, updateBotLastMessage } from "@/store/states/chatsStatus";
@@ -25,7 +26,7 @@ export default function useChatBiz() {
       dispatch(
         updateBotLastMessage({
           bot: {
-            message: res?.data?.response || "",
+            message: marked(res?.data?.response || ""),
             loading: false,
             error: "",
           },
@@ -33,13 +34,13 @@ export default function useChatBiz() {
       );
       return true;
     } catch (error) {
-      console.log(error, "useChatBiz");
+      console.error(error, "useChatBiz");
       dispatch(
         updateBotLastMessage({
           bot: {
             message: "",
             loading: false,
-            error: "Something went wrong while getting response",
+            error: "<span>Something went wrong while getting response</span>",
           },
         })
       );

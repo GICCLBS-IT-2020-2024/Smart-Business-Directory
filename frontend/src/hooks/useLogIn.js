@@ -22,7 +22,7 @@ export default function useLogIn() {
       storeInLocal(res.data);
       return res;
     } catch (error) {
-      console.log(error, "useLogIn");
+      console.error(error, "useLogIn");
       setError(errorHandler(error));
     } finally {
       setIsLoading(false);

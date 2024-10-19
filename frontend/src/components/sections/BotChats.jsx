@@ -52,9 +52,8 @@ function BotMessage({ message }) {
               ? "bg-destructive text-destructive-foreground"
               : "bg-muted text-foreground"
           } py-4 px-4 rounded-md shadow`}
-        >
-          {message.message || message.error}
-        </p>
+          dangerouslySetInnerHTML={{ __html: message.message || message.error }}
+        ></p>
       )}
     </div>
   );
