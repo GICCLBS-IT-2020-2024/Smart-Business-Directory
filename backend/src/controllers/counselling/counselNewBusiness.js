@@ -7,7 +7,7 @@ async function counselNewBusiness(req, res) {
   try {
     const ans = trimInputs(req.body);
     const response = await axios.post(
-      "http://127.0.0.1:8000/api/counsel/",
+      `${process.env.BIZ_BACKEND_API}api/counsel/`,
       ans
     );
     const titlesToSearch = [
