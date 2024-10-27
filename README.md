@@ -52,85 +52,85 @@ The platform includes the following business categories:
 
 #### Clone the repository
 
-\`\`\`bash
+```sh
 git clone https://github.com/GICCLBS-IT-2020-2024/Smart-Business-Directory.git
 cd Smart-Business-Directory
-\`\`\`
+```
 
 #### Django Backend (biz-backend)
 
 1. **Create a virtual environment and activate it**:
 
-   \`\`\`bash
+   ```sh
    python -m venv venv
    source venv/bin/activate # For Linux/Mac
    venv\Scripts\activate # For Windows
-   \`\`\`
+   ```
 
 2. **Install the dependencies**:
 
-   \`\`\`bash
+   ```sh
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 3. **Setup the database and apply migrations**:
 
-   \`\`\`bash
+   ```sh
    python manage.py makemigrations
    python manage.py migrate
-   \`\`\`
+   ```
 
 4. **Run the Django development server**:
 
-   \`\`\`bash
+   ```sh
    python manage.py runserver
-   \`\`\`
+   ```
 
-5. Access the platform’s backend at \`http://127.0.0.1:8000\`.
+5. Access the platform’s backend at `http://127.0.0.1:8000`.
 
 #### React Frontend
 
 1. Navigate to the frontend directory:
 
-   \`\`\`bash
+   ```sh
    cd frontend
-   \`\`\`
+   ```
 
 2. Install dependencies:
 
-   \`\`\`bash
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 3. Start the development server:
 
-   \`\`\`bash
+   ```sh
    npm run dev
-   \`\`\`
+   ```
 
-4. Access the frontend at \`http://localhost:3000\`.
+4. Access the frontend at `http://localhost:3000`.
 
 #### Node.js Backend
 
 1. Navigate to the backend directory:
 
-   \`\`\`bash
+   ```sh
    cd backend
-   \`\`\`
+   ```
 
 2. Install dependencies:
 
-   \`\`\`bash
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 3. Start the backend server:
 
-   \`\`\`bash
+   ```sh
    npm run dev
-   \`\`\`
+   ```
 
-4. The Node backend will be running on the specified port (usually \`http://localhost:5000\`).
+4. The Node backend will be running on the specified port (usually `http://localhost:5000`).
 
 ## Usage
 
