@@ -1,21 +1,18 @@
 import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, Eraser } from "lucide-react";
+import { useSelector, useDispatch } from "react-redux";
 import { botMessageSchema } from "@/lib/zod/botMessageSchema";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
 import { Button } from "@/components/ui/button";
 import useChatBiz from "@/hooks/useChatBiz";
+import { reset } from "@/store/states/chatsStatus";
 
 export default function BotForm() {
+  const chats = useSelector((state) => state.chats);
+  const dispatch = useDispatch();
   const { isLoading, error, chat } = useChatBiz();
   const textareaRef = useRef(null);
   const form = useForm({
@@ -91,18 +88,25 @@ export default function BotForm() {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            size="icon"
-            className="self-end"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <Loader2 className="h-6 w-6 animate-spin" />
-            ) : (
-              <Send className="mt-[4px] mr-[4px]" />
-            )}
-          </Button>
+          <div className="self-end flex items-center gap-2">
+            <Button type="submit" size="icon" disabled={isLoading}>
+              {isLoading ? (
+                <Loader2 className="h-6 w-6 animate-spin" />
+              ) : (
+                <Send className="mt-[4px] mr-[4px]" />
+              )}
+            </Button>
+            <Button
+              type="button"
+              size="icon"
+              className={chats.length === 0 ? "hidden" : "flex"}
+              onClick={() => {
+                dispatch(reset());
+              }}
+            >
+              <Eraser />
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
