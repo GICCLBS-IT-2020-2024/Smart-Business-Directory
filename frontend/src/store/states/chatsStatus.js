@@ -8,14 +8,16 @@ export const chatStatus = createSlice({
       state.push(action.payload);
     },
     updateBotLastMessage: (state, action) => {
-      const lastMessage = state[state.length - 1]; // Access the last message
+      const lastMessage = state[state.length - 1];
       if (lastMessage) {
-        // Update the last message immutably
-        state[state.length - 1] = { ...lastMessage, ...action.payload };
+        state[state.length - 1] = {
+          ...lastMessage,
+          ...action.payload,
+        };
       }
     },
     reset: (state) => {
-      state = [];
+      return [];
     },
   },
 });

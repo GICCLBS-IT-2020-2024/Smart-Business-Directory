@@ -1,10 +1,8 @@
-
-
 # Business Consulting Platform with AI Chatbot
 
 ## Overview
 
-This platform is designed to provide personalized business advice and recommendations to users based on their interests, skills, and available investment. The system leverages an **AI-powered Chatbot** that offers tailored business ideas from a wide range of categories, helping users make informed decisions. 
+This platform provides personalized business advice and recommendations based on user interests, skills, and available investment. It leverages an **AI-powered Chatbot** that offers tailored business ideas from various categories to support informed decision-making.
 
 Additionally, the platform features a **blog section** with insightful articles and resources on various business topics to support users in their entrepreneurial journey.
 
@@ -28,6 +26,7 @@ Additionally, the platform features a **blog section** with insightful articles 
 ## Business Categories
 
 The platform includes the following business categories:
+
 - **Farming** (e.g., Poultry Farming, Fish Farming)
 - **Food and Beverage** (e.g., Coffee Shop, Catering)
 - **Digital and Online** (e.g., Freelancing, E-commerce)
@@ -46,46 +45,97 @@ The platform includes the following business categories:
 - Python 3.x
 - Django
 - PostgreSQL/MySQL (or any other preferred database)
-- Node.js (for JWT authentication with Node backend)
+- Node.js (for frontend and Node backend)
 - Postman (for API testing)
 
 ### Setup Instructions
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/yourprojectname.git
-   cd yourprojectname
-   ```
+#### Clone the repository
 
-2. Create a virtual environment and activate it:
-   ```bash
+```sh
+git clone https://github.com/GICCLBS-IT-2020-2024/Smart-Business-Directory.git
+cd Smart-Business-Directory
+```
+
+#### Django Backend (biz-backend)
+
+1. **Create a virtual environment and activate it**:
+
+   ```sh
    python -m venv venv
-   source venv/bin/activate  # For Linux/Mac
-   venv\Scripts\activate      # For Windows
+   source venv/bin/activate # For Linux/Mac
+   venv\Scripts\activate # For Windows
    ```
 
-3. Install the dependencies:
-   ```bash
+2. **Install the dependencies**:
+
+   ```sh
    pip install -r requirements.txt
    ```
 
-4. Setup the database and apply migrations:
-   ```bash
+3. **Setup the database and apply migrations**:
+
+   ```sh
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-5. Run the development server:
-   ```bash
+4. **Run the Django development server**:
+
+   ```sh
    python manage.py runserver
    ```
 
-6. Access the platform at `http://127.0.0.1:8000`.
+5. Access the platform’s backend at `http://127.0.0.1:8000`.
+
+#### React Frontend
+
+1. Navigate to the frontend directory:
+
+   ```sh
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+4. Access the frontend at `http://localhost:3000`.
+
+#### Node.js Backend
+
+1. Navigate to the backend directory:
+
+   ```sh
+   cd backend
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. Start the backend server:
+
+   ```sh
+   npm run dev
+   ```
+
+4. The Node backend will be running on the specified port (usually `http://localhost:5000`).
 
 ## Usage
 
 - Sign up and log in to access the business recommendation feature.
-- Fill out the **MCQ-based questionnaire** to receive personalized business suggestions.
+- Complete the **MCQ-based questionnaire** to receive personalized business suggestions.
 - Chat with the **AI Chatbot** for business-related questions.
 - Explore the **blog** for useful business tips and articles.
 
@@ -100,4 +150,3 @@ Feel free to fork this repository and submit pull requests. All contributions ar
 ## License
 
 This project is licensed under the MIT License.
-
