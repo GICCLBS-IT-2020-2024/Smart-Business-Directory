@@ -43,7 +43,7 @@ def generate_response(user_input):
     Handling Unrelated Questions:
 
     Respond to unrelated inquiries with:
-    “I'm BizzGPT, a business counseling chatbot focused on business advice. Please ask about business-related topics.”
+    ”
     Response Format:
 
     Avoid starting replies with "hello" after the initial greeting. Maintain a conversational tone while being informative."""
@@ -72,12 +72,18 @@ def generate_response(user_input):
 class ChatbotView(APIView):
     def post(self, request):
         user_input = request.data.get('message')
-        
+        old_input=request.session.get('old_input','')
+        new_input=f"previoulsy i asked aboout {old_input} now i want to know this {user_input} if my new qustion is related with old question give me answer that is related and good"
+        if len(old_input)+len(user_input)>=500:
+            old_input=new_input
+        else:    
+            old_input+=" "+user_input
         # Check if the user wants to end the conversation
-        if is_farewell(user_input):
+        request.session['old_input'] = old_input
+        if is_farewell(new_input):
             return Response({'response': "BizzGPT: Goodbye! Feel free to return if you have more questions."}, status=status.HTTP_200_OK)
 
         # Generate response using the chatbot model
         time.sleep(1)
-        response = generate_response(user_input)
+        response = generate_response(new_input)
         return Response({'response': response}, status=status.HTTP_200_OK)
