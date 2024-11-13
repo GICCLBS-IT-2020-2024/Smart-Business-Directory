@@ -12,7 +12,8 @@ import time
 logger = logging.getLogger(__name__)
 
 # Initialize the Google Generative AI Chat model
-GEMENI_API_KEY = "AIzaSyB9LeutdJ_KfVziLQpMuhPB9hqjjQCqoVo"
+# GEMENI_API_KEY = "AIzaSyB9LeutdJ_KfVziLQpMuhPB9hqjjQCqoVo"
+GEMENI_API_KEY = "AIzaSyDl8uE8lRA7hf7VrPz-7SNbFWDS2WVuvlk"
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro",
     api_key=GEMENI_API_KEY,
@@ -43,9 +44,10 @@ def generate_response(user_input):
     Handling Unrelated Questions:
 
     Respond to unrelated inquiries with:
-    ”
+    just tell the answer of every question 
     Response Format:
-
+    even though some questions are not completely related by businesses but if they are a way to generate income you can provide answere.
+    if you dont understand any business type ask them about the specific problem they are encountering in there business
     Avoid starting replies with "hello" after the initial greeting. Maintain a conversational tone while being informative."""
     
     messages = [
