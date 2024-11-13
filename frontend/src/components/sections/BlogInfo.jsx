@@ -14,7 +14,7 @@ export default function BlogInfo({ data }) {
           <img
             src={data.imageUrl || "/Buildings.jpg"}
             alt="image"
-            className="rounded-md object-cover w-full h-[300px]"
+            className="rounded-md object-cover w-[2000px] h-[300px]"
           />
         </CardContent>
         <CardHeader>
